@@ -6,18 +6,34 @@
 //
 
 import SwiftUI
-import CoreData
 
 
 struct ContentView: View {
-    @StateObject var viewmodel = ViewModel()
+    @StateObject var recipesViewModel = RecipesViewModel()
+    
+    @State private var name = ""
     var body: some View {
         VStack{
-            Text("CONTENT")
-            Button(/*@START_MENU_TOKEN@*/"Button"/*@END_MENU_TOKEN@*/) {
-                /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
-            }.background(Color.gray)
-        }
+            List{
+                ForEach(recipesViewModel.recipes){ recipe in
+                    Text(recipe.name ?? "Error")
+                }
+                .onDelete(perform: delete)
+                
+                
+            }
+            HStack{
+                TextField("New Recipe", text: $name)
+                Button("Add"){
+                    recipesViewModel.addData(name: name)
+                    name = ""
+                }
+            }
+        }.padding()
+    }
+    
+    func delete(at offsets : IndexSet){
+        recipesViewModel.deleteItem(at: offsets)
     }
 }
 

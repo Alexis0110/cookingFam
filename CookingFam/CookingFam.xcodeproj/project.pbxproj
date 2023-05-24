@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		5E50573B2A1E8CA40097339F /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E50573A2A1E8CA40097339F /* ViewModel.swift */; };
+		5E50573D2A1E8D6F0097339F /* ExampleStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E50573C2A1E8D6F0097339F /* ExampleStruct.swift */; };
+		5E5057412A1E961E0097339F /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5E50573F2A1E961E0097339F /* Model.xcdatamodeld */; };
+		5E5057442A1E97C20097339F /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5057432A1E97C20097339F /* DataController.swift */; };
 		5ED4DFF12A1E8B4000DDC5D1 /* CookingFamApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4DFF02A1E8B4000DDC5D1 /* CookingFamApp.swift */; };
 		5ED4DFF32A1E8B4000DDC5D1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4DFF22A1E8B4000DDC5D1 /* ContentView.swift */; };
 		5ED4DFF52A1E8B4100DDC5D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5ED4DFF42A1E8B4100DDC5D1 /* Assets.xcassets */; };
 		5ED4DFF82A1E8B4100DDC5D1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5ED4DFF72A1E8B4100DDC5D1 /* Preview Assets.xcassets */; };
-		5ED4DFFA2A1E8B4100DDC5D1 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4DFF92A1E8B4100DDC5D1 /* Model.swift */; };
-		5ED4DFFD2A1E8B4200DDC5D1 /* CookingFam.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4DFFB2A1E8B4200DDC5D1 /* CookingFam.xcdatamodeld */; };
 		5ED4E0072A1E8B4200DDC5D1 /* CookingFamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4E0062A1E8B4200DDC5D1 /* CookingFamTests.swift */; };
 		5ED4E0112A1E8B4200DDC5D1 /* CookingFamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4E0102A1E8B4200DDC5D1 /* CookingFamUITests.swift */; };
 		5ED4E0132A1E8B4200DDC5D1 /* CookingFamUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4E0122A1E8B4200DDC5D1 /* CookingFamUITestsLaunchTests.swift */; };
@@ -38,13 +39,14 @@
 
 /* Begin PBXFileReference section */
 		5E50573A2A1E8CA40097339F /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		5E50573C2A1E8D6F0097339F /* ExampleStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleStruct.swift; sourceTree = "<group>"; };
+		5E5057402A1E961E0097339F /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		5E5057432A1E97C20097339F /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		5ED4DFED2A1E8B4000DDC5D1 /* CookingFam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CookingFam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ED4DFF02A1E8B4000DDC5D1 /* CookingFamApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingFamApp.swift; sourceTree = "<group>"; };
 		5ED4DFF22A1E8B4000DDC5D1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5ED4DFF42A1E8B4100DDC5D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5ED4DFF72A1E8B4100DDC5D1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		5ED4DFF92A1E8B4100DDC5D1 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		5ED4DFFC2A1E8B4200DDC5D1 /* CookingFam.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CookingFam.xcdatamodel; sourceTree = "<group>"; };
 		5ED4E0022A1E8B4200DDC5D1 /* CookingFamTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CookingFamTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ED4E0062A1E8B4200DDC5D1 /* CookingFamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingFamTests.swift; sourceTree = "<group>"; };
 		5ED4E00C2A1E8B4200DDC5D1 /* CookingFamUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CookingFamUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +79,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E50573E2A1E8D750097339F /* Structs */ = {
+			isa = PBXGroup;
+			children = (
+				5E50573C2A1E8D6F0097339F /* ExampleStruct.swift */,
+			);
+			path = Structs;
+			sourceTree = "<group>";
+		};
+		5E5057422A1E96270097339F /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				5E50573F2A1E961E0097339F /* Model.xcdatamodeld */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
 		5ED4DFE42A1E8B4000DDC5D1 = {
 			isa = PBXGroup;
 			children = (
@@ -102,10 +120,11 @@
 			children = (
 				5ED4DFF02A1E8B4000DDC5D1 /* CookingFamApp.swift */,
 				5ED4DFF22A1E8B4000DDC5D1 /* ContentView.swift */,
-				5ED4DFF42A1E8B4100DDC5D1 /* Assets.xcassets */,
-				5ED4DFF92A1E8B4100DDC5D1 /* Model.swift */,
 				5E50573A2A1E8CA40097339F /* ViewModel.swift */,
-				5ED4DFFB2A1E8B4200DDC5D1 /* CookingFam.xcdatamodeld */,
+				5E5057432A1E97C20097339F /* DataController.swift */,
+				5E5057422A1E96270097339F /* Database */,
+				5E50573E2A1E8D750097339F /* Structs */,
+				5ED4DFF42A1E8B4100DDC5D1 /* Assets.xcassets */,
 				5ED4DFF62A1E8B4100DDC5D1 /* Preview Content */,
 			);
 			path = CookingFam;
@@ -267,10 +286,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E50573B2A1E8CA40097339F /* ViewModel.swift in Sources */,
-				5ED4DFFA2A1E8B4100DDC5D1 /* Model.swift in Sources */,
-				5ED4DFFD2A1E8B4200DDC5D1 /* CookingFam.xcdatamodeld in Sources */,
+				5E5057442A1E97C20097339F /* DataController.swift in Sources */,
 				5ED4DFF32A1E8B4000DDC5D1 /* ContentView.swift in Sources */,
 				5ED4DFF12A1E8B4000DDC5D1 /* CookingFamApp.swift in Sources */,
+				5E50573D2A1E8D6F0097339F /* ExampleStruct.swift in Sources */,
+				5E5057412A1E961E0097339F /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -591,13 +611,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		5ED4DFFB2A1E8B4200DDC5D1 /* CookingFam.xcdatamodeld */ = {
+		5E50573F2A1E961E0097339F /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				5ED4DFFC2A1E8B4200DDC5D1 /* CookingFam.xcdatamodel */,
+				5E5057402A1E961E0097339F /* Model.xcdatamodel */,
 			);
-			currentVersion = 5ED4DFFC2A1E8B4200DDC5D1 /* CookingFam.xcdatamodel */;
-			path = CookingFam.xcdatamodeld;
+			currentVersion = 5E5057402A1E961E0097339F /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

@@ -10,9 +10,13 @@ import UIKit
 
 @main
 struct CookingFamApp: App {
+    
+    @StateObject  private var dataController = DataController(name: "Model")
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(\.managedObjectContext, dataController.container.viewContext)
         }
     }
 }
