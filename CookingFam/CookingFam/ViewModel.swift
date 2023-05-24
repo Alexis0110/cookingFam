@@ -2,7 +2,7 @@
 //  ViewModel.swift
 //  CookingFam
 //
-//  Created by Alexis on 23.05.23.
+//  Created by Alexis on 24.05.23.
 //
 
 import Foundation
@@ -13,5 +13,3 @@ extension ContentView {
     @MainActor class ViewModel:ObservableObject{
     }
 }
-
-
