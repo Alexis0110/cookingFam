@@ -12,7 +12,8 @@ import CoreData
 
 
 class RecipesViewModel: ObservableObject{
-    private var dataController = DataController(name: "Model")
+    private var dataController = DataController()
+//    @Environment(\.managedObjectContext) var moc
     @Published var recipes = [Recipe]()
     
     init(){
@@ -28,12 +29,25 @@ class RecipesViewModel: ObservableObject{
             print("Error CoreData")
         }
     }
+ 
     
-    func addData(name :  String){
+    func addRecipe(name : String, ingredients : [String], directions : [String], components : [String] ){
         let newRecipe = Recipe(context: dataController.container.viewContext)
         newRecipe.id = UUID()
         newRecipe.name = name
-        
+        //ingredients
+        //directions
+        //components
+//        var componentSet = NSSet(array: components)
+//        newRecipe.component = componentSet
+//        newRecipe.component = Component(context: dataController.container.viewContext)
+//        newRecipe.component?.name = components[0]
+        save()
+        fetchData()
+    }
+    
+    func deleteEverything(){
+        dataController.deleteAll()
         save()
         fetchData()
     }

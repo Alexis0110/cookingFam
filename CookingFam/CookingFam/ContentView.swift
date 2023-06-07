@@ -10,26 +10,33 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var recipesViewModel = RecipesViewModel()
-    
-    @State private var name = ""
+    @State private var selectedTab = 1
+//    @FetchRequest var recipes: FetchedResults<Recipe>
     var body: some View {
-        VStack{
-            List{
-                ForEach(recipesViewModel.recipes){ recipe in
-                    Text(recipe.name ?? "Error")
-                }
-                .onDelete(perform: delete)
-                
-                
-            }
-            HStack{
-                TextField("New Recipe", text: $name)
-                Button("Add"){
-                    recipesViewModel.addData(name: name)
-                    name = ""
-                }
-            }
+            TabView (selection: $selectedTab){
+                QrScanner()
+                    .tabItem {
+                        Image(systemName: "qrcode.viewfinder")
+                        Text("Scan QR-Code")
+                    }
+                RecipeSearch()
+                    .tabItem {
+                        Image(systemName: "magnifyingglass")
+                        Text("Recipes")
+                    }.tag(1)
+                Cooking()
+                    .tabItem {
+                        Image(systemName: "oven")
+                        Text("Cooking")
+                    }
+                Cookbook()
+                    .tabItem {
+                        Image(systemName: "book")
+                        Text("Cookbook")
+                    }
+            
         }.padding()
+        
     }
     
     func delete(at offsets : IndexSet){
