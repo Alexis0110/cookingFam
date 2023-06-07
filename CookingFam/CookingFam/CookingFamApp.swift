@@ -11,7 +11,7 @@ import UIKit
 @main
 struct CookingFamApp: App {
     
-    @StateObject  private var dataController = DataController()
+    @StateObject private var dataController = DataController()
     
     var body: some Scene {
         WindowGroup {
