@@ -14,25 +14,47 @@ struct RecipeSearch: View {
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: []) var recipes: FetchedResults<Recipe>
     
+    @Binding var activeView: ActiveView
+    @Binding var activeRecipe: Recipe
     
     var body: some View {
-        VStack{
-//            Button("Reload"){
-//                load()
-//            }
-            ForEach(recipes, id: \.self){recipe in
-                RecipeCard(text: recipe.wrappedName, components: recipe.componentArray)
+        ZStack {
+            BackgroundColor()
+            VStack{
+    //            Button("Reload"){
+    //                load()
+    //            }
+                ForEach(recipes, id: \.self){recipe in
+                    RecipeCard(text: recipe.wrappedName, components: recipe.componentArray, selectedRecipe: recipe ,activeView: $activeView, activeRecipe: $activeRecipe)
+                }
+                .edgesIgnoringSafeArea(.all)
+                
             }
-//            List{
-//
-//                ForEach(recipes, id: \.self){ recipe in
-//                Section(recipe.wrappedName){
-//                    ForEach(recipe.componentArray, id: \.self){ comp in
-//                        Text(comp.wrappedName)
-//                    }
-//                }
-//            }
-//        }
+            VStack {
+                Spacer()
+                HStack {
+                    Spacer()
+                    HStack{
+                        Image(systemName: "qrcode")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 40, height: 40)
+                            .padding(10)
+                        Text("Scan QU-Code")
+                            .padding(10)
+                    }
+                    .background(Color(hex: 0xffd3b6))
+                    .onTapGesture {
+                        activeView = .qr
+                    }
+                    .cornerRadius(10)
+                    .padding()
+                    .shadow(color: Color.black.opacity(0.3),
+                            radius: 3,
+                            x: 3,
+                            y: 3)
+                }
+            }
         }
         
     }

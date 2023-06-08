@@ -10,31 +10,40 @@ import SwiftUI
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) var moc
+    @State var activeView : ActiveView = .search
+    @State var activeRecipe : Recipe = Recipe()
     var body: some View {
-            TabView {
-//                QrScanner()
-//                    .tabItem {
-//                        Image(systemName: "qrcode.viewfinder")
-//                        Text("Scan QR-Code")
-//                    }
-                RecipeSearch()
-                    .tabItem {
-                        Image(systemName: "magnifyingglass")
-                        Text("Recipes")
-                    }
-                Cooking()
-                    .tabItem {
-                        Image(systemName: "oven")
-                        Text("Cooking")
-                    }
-                Cookbook()
-                    .tabItem {
-                        Image(systemName: "book")
-                        Text("Cookbook")
-                    }
-        }.padding()
-        
+        ZStack {
+            BackgroundColor()
+            if activeView == .search {
+                TabView {
+                    
+                    RecipeSearch(activeView: $activeView, activeRecipe: $activeRecipe)
+                        .tabItem {
+                            Image(systemName: "magnifyingglass")
+                            Text("Recipes")
+                        }
+                    Cookbook()
+                        .tabItem {
+                            Image(systemName: "book")
+                            Text("Cookbook")
+                        }
+                    
+                    
+                    
+                }
+                .edgesIgnoringSafeArea(.all)
+            } else if activeView == .qr{
+                QrScanner(activeView: $activeView)
+            } else if activeView == .details{
+                RecipeDetails(activeView: $activeView, activeRecipe: $activeRecipe)
+            }
+        }
     }
+}
+
+enum ActiveView {
+    case search, details, qr
 }
 
 struct ContentView_Previews: PreviewProvider {

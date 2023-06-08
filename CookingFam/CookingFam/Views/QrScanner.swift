@@ -10,10 +10,18 @@ import SwiftUI
 
 
 struct QrScanner: View {
+    @Binding var activeView: ActiveView
     var body: some View {
-        VStack{
-            Text("SCAN CODE")
+        ZStack {
+            BackgroundColor()
+            VStack{
+                VStack{
+                    Image(systemName: "chevron.backward")
+                }.onTapGesture {
+                    activeView = .search
+                }
+                Text("SCAN CODE")
+            }
         }
-        
     }
 }

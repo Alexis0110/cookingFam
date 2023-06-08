@@ -11,8 +11,11 @@ import SwiftUI
 
 struct Cooking: View {
     var body: some View {
-        VStack{
-            Text("COOK")
+        ZStack{
+            BackgroundColor()
+            VStack{
+                Text("COOK")
+            }
         }
         
     }
