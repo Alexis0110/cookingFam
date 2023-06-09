@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3B5278DB2A3379F2008CD8F3 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5278DA2A3379F2008CD8F3 /* BackButton.swift */; };
 		3BDDA13A2A33B53E0074CB1D /* Recipe.csv in Resources */ = {isa = PBXBuildFile; fileRef = 3BDDA1392A33B53E0074CB1D /* Recipe.csv */; };
+		3BDDA13C2A33B69A0074CB1D /* Recipe.csv in Resources */ = {isa = PBXBuildFile; fileRef = 3BDDA13B2A33B69A0074CB1D /* Recipe.csv */; };
 		5E50573B2A1E8CA40097339F /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E50573A2A1E8CA40097339F /* ViewModel.swift */; };
 		5E50573D2A1E8D6F0097339F /* ExampleStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E50573C2A1E8D6F0097339F /* ExampleStruct.swift */; };
 		5E5057412A1E961E0097339F /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5E50573F2A1E961E0097339F /* Model.xcdatamodeld */; };
@@ -57,6 +58,7 @@
 /* Begin PBXFileReference section */
 		3B5278DA2A3379F2008CD8F3 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		3BDDA1392A33B53E0074CB1D /* Recipe.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Recipe.csv; path = ../../../../cookingFam/Recipe.csv; sourceTree = "<group>"; };
+		3BDDA13B2A33B69A0074CB1D /* Recipe.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Recipe.csv; sourceTree = "<group>"; };
 		5E50573A2A1E8CA40097339F /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		5E50573C2A1E8D6F0097339F /* ExampleStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleStruct.swift; sourceTree = "<group>"; };
 		5E5057402A1E961E0097339F /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				3BDDA1392A33B53E0074CB1D /* Recipe.csv */,
+				3BDDA13B2A33B69A0074CB1D /* Recipe.csv */,
 				5E5057432A1E97C20097339F /* DataController.swift */,
 			);
 			path = Data;
@@ -342,6 +345,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BDDA13C2A33B69A0074CB1D /* Recipe.csv in Resources */,
 				5ED4DFF82A1E8B4100DDC5D1 /* Preview Assets.xcassets in Resources */,
 				3BDDA13A2A33B53E0074CB1D /* Recipe.csv in Resources */,
 				5ED4DFF52A1E8B4100DDC5D1 /* Assets.xcassets in Resources */,
