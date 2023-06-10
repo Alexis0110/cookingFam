@@ -37,13 +37,15 @@ struct ContentView: View {
                 QrScanner(activeView: $activeView)
             } else if activeView == .details{
                 RecipeDetails(activeView: $activeView, activeRecipe: $activeRecipe)
+            } else if activeView == .sort_directions{
+                SortDirections(activeView: $activeView, activeRecipe: $activeRecipe)
             }
         }
     }
 }
 
 enum ActiveView {
-    case search, details, qr
+    case search, details, qr, sort_directions
 }
 
 struct ContentView_Previews: PreviewProvider {

@@ -21,7 +21,7 @@ class DataController : ObservableObject{
         }
     }
     
-    func importCSV(){
+    func importCSV(){ //TODO: stop double imports
         //CSV structure: id,title,ingredients,directions,link,source,NER
         
         guard let path = Bundle.main.path(forResource: "Recipe", ofType: "csv") else {
@@ -38,15 +38,15 @@ class DataController : ObservableObject{
             
             if let rows = rows {
                 for row in rows {
-                    // seperade data from nested data , e.g. A,[X,Y,Z],B,C
+                    // seperade data from nested data, e.g. A,[X,Y,Z],B,C
                     var nested = false
                     var field = ""
                     var data_columns: [String] = []
-                    if row.contains(","){
+                    if row.contains(";"){
                         for c in row {
                             if c == "[" || c == "]" {
                                 nested.toggle()
-                            }else if c == "," && !nested {
+                            }else if c == ";" && !nested {
                                 data_columns.append(field)
                                 field = ""
                             }else{
@@ -60,7 +60,7 @@ class DataController : ObservableObject{
                     if data_columns != []{
                         if let newRecipe = NSEntityDescription.insertNewObject(forEntityName: "Recipe", into: container.viewContext) as? Recipe {
                             newRecipe.name = data_columns[1]
-                            let ingredients = data_columns[2].components(separatedBy: ",")
+                            let ingredients = data_columns[2].components(separatedBy: ";")
                             ingredients.forEach{ingredient in
                                 if let newIngredient = NSEntityDescription.insertNewObject(forEntityName: "Ingredient", into: container.viewContext) as? Ingredient {
                                     newIngredient.name = ingredient
@@ -68,7 +68,7 @@ class DataController : ObservableObject{
                                     newIngredient.recipe?.name = data_columns[1]
                                 }
                             }
-                            let directions = data_columns[3].components(separatedBy: ",")
+                            let directions = data_columns[3].components(separatedBy: ";")
                             directions.forEach{direction in
                                 if let newDirection = NSEntityDescription.insertNewObject(forEntityName: "Direction", into: container.viewContext) as? Direction {
                                     newDirection.text = direction
@@ -76,7 +76,7 @@ class DataController : ObservableObject{
                                     newDirection.recipe?.name = data_columns[1]
                                 }
                             }
-                            let components = data_columns[6].components(separatedBy: ",")
+                            let components = data_columns[6].components(separatedBy: ";")
                             components.forEach{component in
                                 if let newComponent = NSEntityDescription.insertNewObject(forEntityName: "Component", into: container.viewContext) as? Component {
                                     newComponent.name = component
@@ -86,7 +86,6 @@ class DataController : ObservableObject{
                             }
                         }
                     }
-                    
                 }
             }
             try container.viewContext.save()

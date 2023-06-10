@@ -48,6 +48,8 @@ struct RecipeDetails: View {
                 HStack{
                     Text("Let's cook!")
                         .padding(10)
+                }.onTapGesture {
+                    activeView = .sort_directions
                 }
                 .background(Color(hex: 0xffd3b6))
                 .cornerRadius(10)
@@ -62,6 +64,7 @@ struct RecipeDetails: View {
         }
     }
     
+    //TODO: remove falls nich mehr nötig
     private var backButton: some View {
         Button(action: {
             // Handle the "Go Back" action here
