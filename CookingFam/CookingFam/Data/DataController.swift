@@ -38,7 +38,7 @@ class DataController : ObservableObject{
             
             if let rows = rows {
                 for row in rows {
-                    // seperade data from nested data, e.g. A,[X,Y,Z],B,C
+                    // seperade data from nested data, e.g. A;[X;Y,d,v;Z];B;C
                     var nested = false
                     var field = ""
                     var data_columns: [String] = []
@@ -68,12 +68,15 @@ class DataController : ObservableObject{
                                     newIngredient.recipe?.name = data_columns[1]
                                 }
                             }
+                            var i = 0
                             let directions = data_columns[3].components(separatedBy: ";")
                             directions.forEach{direction in
                                 if let newDirection = NSEntityDescription.insertNewObject(forEntityName: "Direction", into: container.viewContext) as? Direction {
-                                    newDirection.text = direction
+                                    // add number to keep right order for directions 
+                                    newDirection.text = String(i) + direction
                                     newDirection.recipe = newRecipe
                                     newDirection.recipe?.name = data_columns[1]
+                                    i = i+1
                                 }
                             }
                             let components = data_columns[6].components(separatedBy: ";")

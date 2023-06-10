@@ -58,6 +58,13 @@ struct RecipeDetails: View {
                         radius: 3,
                         x: 3,
                         y: 3)
+                HStack{
+//                    Image(systemName: "Plus")
+                    Text("Add chefs")
+                        .padding(10)
+                }.onTapGesture {
+                    activeView = .sort_directions
+                }
             }
             .padding()
                 

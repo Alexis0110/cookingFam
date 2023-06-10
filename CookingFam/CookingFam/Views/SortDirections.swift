@@ -20,15 +20,14 @@ struct SortDirections: View {
             }
             HStack{
                 List {
-                    ForEach(activeRecipe.directionArray, id: \.self) {direction in
-                        Text(direction.text ?? "Error")
-                            .font(.body)
+                    ForEach(activeRecipe.directionArray) {direction in
+                        VStack{
+                            let text = direction.text?.dropFirst()
+                            Text(text ?? "Error")
+                                .font(.body)
+                        }
                     }
                 }
-                Text("print")
-                    .onTapGesture {
-                        print(activeRecipe.directionArray)
-                    }
             }
         }
     }
