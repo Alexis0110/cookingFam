@@ -23,6 +23,7 @@
 		5ED4E0072A1E8B4200DDC5D1 /* CookingFamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4E0062A1E8B4200DDC5D1 /* CookingFamTests.swift */; };
 		5ED4E0112A1E8B4200DDC5D1 /* CookingFamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4E0102A1E8B4200DDC5D1 /* CookingFamUITests.swift */; };
 		5ED4E0132A1E8B4200DDC5D1 /* CookingFamUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4E0122A1E8B4200DDC5D1 /* CookingFamUITestsLaunchTests.swift */; };
+		5ED7CB432A3B3C6300B0DB7A /* AddCooksDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7CB422A3B3C6300B0DB7A /* AddCooksDialog.swift */; };
 		5ED9343E2A30FF8800EE96CA /* RecipeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9343D2A30FF8800EE96CA /* RecipeCard.swift */; };
 		5EEFB3862A2F9DEF0000643B /* QrScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EEFB3852A2F9DEF0000643B /* QrScanner.swift */; };
 		5EEFB3882A2F9E730000643B /* RecipeSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EEFB3872A2F9E730000643B /* RecipeSearch.swift */; };
@@ -75,6 +76,7 @@
 		5ED4E00C2A1E8B4200DDC5D1 /* CookingFamUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CookingFamUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ED4E0102A1E8B4200DDC5D1 /* CookingFamUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingFamUITests.swift; sourceTree = "<group>"; };
 		5ED4E0122A1E8B4200DDC5D1 /* CookingFamUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingFamUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		5ED7CB422A3B3C6300B0DB7A /* AddCooksDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCooksDialog.swift; sourceTree = "<group>"; };
 		5ED9343D2A30FF8800EE96CA /* RecipeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCard.swift; sourceTree = "<group>"; };
 		5EEFB3852A2F9DEF0000643B /* QrScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrScanner.swift; sourceTree = "<group>"; };
 		5EEFB3872A2F9E730000643B /* RecipeSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSearch.swift; sourceTree = "<group>"; };
@@ -217,10 +219,11 @@
 			children = (
 				5EEFB3872A2F9E730000643B /* RecipeSearch.swift */,
 				5E6246082A321D670058C759 /* RecipeDetails.swift */,
+				5ED7CB422A3B3C6300B0DB7A /* AddCooksDialog.swift */,
+				3B8FA6582A33B86A001A7843 /* SortDirections.swift */,
 				5EEFB3852A2F9DEF0000643B /* QrScanner.swift */,
 				5EEFB3892A2F9E8E0000643B /* Cooking.swift */,
 				5EEFB38B2A2F9EA10000643B /* Cookbook.swift */,
-				3B8FA6582A33B86A001A7843 /* SortDirections.swift */,
 				5ED9343F2A3106EA00EE96CA /* Components */,
 			);
 			path = Views;
@@ -387,6 +390,7 @@
 				5EFA887A2A2FB0B900C02F67 /* Ingredient+CoreDataClass.swift in Sources */,
 				5E6246092A321D670058C759 /* RecipeDetails.swift in Sources */,
 				5EFA887B2A2FB0B900C02F67 /* Ingredient+CoreDataProperties.swift in Sources */,
+				5ED7CB432A3B3C6300B0DB7A /* AddCooksDialog.swift in Sources */,
 				3B8FA6592A33B86A001A7843 /* SortDirections.swift in Sources */,
 				5ED4DFF12A1E8B4000DDC5D1 /* CookingFamApp.swift in Sources */,
 				5EEFB38C2A2F9EA10000643B /* Cookbook.swift in Sources */,

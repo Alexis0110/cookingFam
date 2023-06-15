@@ -26,7 +26,7 @@ struct RecipeSearch: View {
 //                    dataController.importCSV()
 //                }
                 
-                Form {
+                List {
                     // Cards:
                     ForEach(recipes, id: \.self){recipe in
                         RecipeCard(text: recipe.wrappedName, components: recipe.componentArray, selectedRecipe: recipe ,activeView: $activeView, activeRecipe: $activeRecipe)
