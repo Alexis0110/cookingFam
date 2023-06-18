@@ -46,10 +46,10 @@ struct RecipeDetails: View {
                 .cornerRadius(10)
                 .shadow(color: .gray, radius: 2, x: 0, y: 2)
                 HStack{
-                    Text("Let's cook!")
+                    Text("Cook with others")
                         .padding(10)
                 }.onTapGesture {
-                    activeView = .sort_directions
+                    activeView = .addCooks
                 }
                 .background(Color(hex: 0xffd3b6))
                 .cornerRadius(10)
@@ -60,7 +60,7 @@ struct RecipeDetails: View {
                         y: 3)
                 HStack{
 //                    Image(systemName: "Plus")
-                    Text("Add chefs")
+                    Text("Cook alone")
                         .padding(10)
                 }.onTapGesture {
                     activeView = .sort_directions
