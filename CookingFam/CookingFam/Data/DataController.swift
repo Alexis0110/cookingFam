@@ -72,8 +72,12 @@ class DataController : ObservableObject{
                             let directions = data_columns[3].components(separatedBy: ";")
                             directions.forEach{direction in
                                 if let newDirection = NSEntityDescription.insertNewObject(forEntityName: "Direction", into: container.viewContext) as? Direction {
-                                    // add number to keep right order for directions 
-                                    newDirection.text = String(i) + direction
+                                    // add number to keep right order for directions
+                                    var dir_text = direction
+                                    if direction.first == " "{
+                                        dir_text = String(direction.dropFirst())
+                                    }
+                                    newDirection.text = (String(i) + ":") + dir_text
                                     newDirection.recipe = newRecipe
                                     newDirection.recipe?.name = data_columns[1]
                                     i = i+1

@@ -25,21 +25,31 @@ struct AddCooksDialog: View {
                     
                     Spacer()
                 }
-                Text("Add Entry")
+
+                Text("Add all awesome chefs")
                     .font(.title)
                     .padding()
                 HStack{
-                TextField("Enter entry", text: $newEntry)
+                    // adds randomness to default entry for inputfield
+                    let awesome_words = ["Awesome","impressive","superior","topnotch","finest","unrivaled","unsurpassable",""]
+                    let cook_words = ["cook","chef","knife-swinger","deep-fryer","food-creator","vegetable-smasher"]
+                    TextField((awesome_words.randomElement() ?? "awesome") + " " + (cook_words.randomElement() ?? "chef"), text: $newEntry)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
- 
+                    // TODO: add "enter pressed" to add chefs as well
                     Button("Add") {
-                        cooks.append(newEntry)
+                        // adds uniqueness with id
+                        var id = ""
+                        let text = newEntry.capitalizingFirstLetter()
+                        if cooks.contains(text){
+                            id = String(returnUniqueID(entry: text, id: 1))
+                        }
+                        cooks.append(text + id)
                         newEntry = ""
                     }
+                    .disabled(newEntry == "")
                     .padding()
-                    
-                    
+
                 }
                 
                 List {
@@ -48,10 +58,17 @@ struct AddCooksDialog: View {
                     }
                     .onDelete(perform: deleteEntry)
                 }
+
+                .listRowBackground(Color.clear)
+                
+
                 .padding()
                 Button("Continue") {
                     activeView  = .sort_directions
                 }
+
+                .disabled(cooks.count == 0)
+
                 .padding()
             }
         }
@@ -60,5 +77,12 @@ struct AddCooksDialog: View {
     private func deleteEntry(at offsets: IndexSet) {
         cooks.remove(atOffsets: offsets)
     }
+    private func returnUniqueID(entry: String, id: Int) -> Int{
+        if cooks.contains(entry + String(id)){
+            return returnUniqueID(entry: entry, id: id+1)
+        }
+        return id
+    }
+
 }
 
