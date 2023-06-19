@@ -25,6 +25,7 @@ struct AddCooksDialog: View {
                     
                     Spacer()
                 }
+
                 Text("Add all awesome chefs")
                     .font(.title)
                     .padding()
@@ -48,6 +49,7 @@ struct AddCooksDialog: View {
                     }
                     .disabled(newEntry == "")
                     .padding()
+
                 }
                 
                 List {
@@ -56,13 +58,17 @@ struct AddCooksDialog: View {
                     }
                     .onDelete(perform: deleteEntry)
                 }
+
                 .listRowBackground(Color.clear)
                 
+
                 .padding()
                 Button("Continue") {
                     activeView  = .sort_directions
                 }
+
                 .disabled(cooks.count == 0)
+
                 .padding()
             }
         }
@@ -77,5 +83,6 @@ struct AddCooksDialog: View {
         }
         return id
     }
+
 }
 

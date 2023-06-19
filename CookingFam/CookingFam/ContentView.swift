@@ -13,6 +13,7 @@ struct ContentView: View {
     @State var activeView : ActiveView = .search
     @State var activeRecipe : Recipe = Recipe()
     @State var cooks: [String] = []
+
     var body: some View {
         ZStack {
             BackgroundColor()
@@ -38,7 +39,9 @@ struct ContentView: View {
             }  else if activeView == .addCooks{
                 AddCooksDialog(activeView: $activeView, cooks: $cooks)
             } else if activeView == .sort_directions{
+
                 SortDirections(activeView: $activeView, activeRecipe: $activeRecipe, cooks: $cooks)
+
             }
         }
     }
@@ -46,6 +49,7 @@ struct ContentView: View {
 
 enum ActiveView {
     case search, details, qr, sort_directions, addCooks
+
 }
 
 extension String {
@@ -77,6 +81,7 @@ extension UIViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
+
 }
 
 struct ContentView_Previews: PreviewProvider {

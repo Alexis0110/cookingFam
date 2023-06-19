@@ -10,16 +10,19 @@ struct SortDirections: View {
     @Binding var activeView: ActiveView
     @Binding var activeRecipe: Recipe
     @Binding var cooks: [String]
+
     @State var dividedDirections = [String:[String]]()
     @State private var selectedCook: String = ""
     @State private var selection: UUID?
     @State var directionDictionary : [String:String] = [:]
     
+
     
     var body: some View {
         var directions: [Direction] = activeRecipe.directionArray
 
         VStack(spacing: 16) {
+            
             HStack {
                 BackButton(activeView: $activeView, prevView: .addCooks)
                     .padding(.leading, 16)
@@ -28,6 +31,7 @@ struct SortDirections: View {
             HStack {
                 ForEach(cooks, id: \.self){cook in
                     Button(action: {
+
                         selectedCook = cook
                     }) {
                         Text(cook)
@@ -58,6 +62,7 @@ struct SortDirections: View {
                         } else{
                             cook_directions = cook_directions.filter { $0 != key }
                             directionDictionary[key] = ""
+
                         }
                         dividedDirections[selectedCook] = cook_directions.sorted()
                         
