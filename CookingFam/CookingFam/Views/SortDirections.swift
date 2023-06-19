@@ -2,7 +2,6 @@
 //  SortDirections.swift
 //  CookingFam
 //
-//  Created by Kober, Ingo on 09.06.23.
 //
 
 import SwiftUI
@@ -14,16 +13,12 @@ struct SortDirections: View {
     @State var dividedDirections = [String:[String]]()
     @State private var selectedCook: String = ""
     @State private var selection: UUID?
+    @State var directionDictionary : [String:String] = [:]
     
     
     var body: some View {
         var directions: [Direction] = activeRecipe.directionArray
-        var texts : [String] = [""]
-        ForEach (directions){ d in
-            Text(texts[0])
-            //print(d.text ?? "error")
-        }
-        
+
         VStack(spacing: 16) {
             HStack {
                 BackButton(activeView: $activeView, prevView: .addCooks)
@@ -43,47 +38,37 @@ struct SortDirections: View {
                     }
                 }
             }
-            .padding()
-            NavigationStack {
-                List(directions, id: \.self, selection: $selection) { direction in
-                    let text = removeDirectionID(direction: direction.text ?? "Error")
-                    Text(text)
-                        .font(.body)
-                }
-                .navigationTitle("List Selection")
-                .environment(\.editMode, .constant(.active))
+            .onAppear(){
+                for direction in directions {
+                    directionDictionary[direction.wrappedText] = ""
+                    }
+                selectedCook = cooks[0]
             }
-//            HStack{
-//                List(directions, id: \.self, selection: $selection){ direction in
-//                    let text = removeDirectionID(direction: direction.text ?? "Error")
-//                    Text(text)
-//                        .font(.body)
-//                }
-//                .navigationTitle("Directions for " + selectedCook)
-//                .toolbar{
-//                    EditButton()
-//                }
-//                List {
-//                    ForEach(activeRecipe.directionArray) {direction in
-//                        VStack{
-//                            let text = direction.text?.dropFirst(2) ?? "Error"
-//                            Text(text)
-//                                .font(.body)
-//                        }.onTapGesture {
-//                            if selectedCook == ""{
-//                                selectedCook = cooks[0]
-//                            }
-//                            var cook_directions : [String] = dividedDirections[selectedCook] ?? []
-//                            if !cook_directions.contains(direction.text ?? "Error"){
-//                                cook_directions.append(direction.text ?? "Error")
-//                            }
-//                            dividedDirections[selectedCook] = cook_directions.sorted()
-//                            print(dividedDirections)
-//                            print(directions)
-//                        }
-//                    }
-//                }
-//            }
+            .padding()
+            List {
+                ForEach(Array(directionDictionary.keys), id: \.self) { key in
+                    Button(action: {
+                        // Perform action when button is tapped
+                        // For example, toggle the value of the selected entry
+                        
+                        var cook_directions : [String] = dividedDirections[selectedCook] ?? []
+                        if !cook_directions.contains(key){
+                            cook_directions.append(key)
+                            directionDictionary[key] = selectedCook
+                        } else{
+                            cook_directions = cook_directions.filter { $0 != key }
+                            directionDictionary[key] = ""
+                        }
+                        dividedDirections[selectedCook] = cook_directions.sorted()
+                        
+                    }) {
+                        Text(removeDirectionID(direction:key))
+                            .foregroundColor(getForegroundColor(for: key)) // Make unselectable entries gray
+                    }
+                    .disabled(directionDictionary[key] != selectedCook && directionDictionary[key] != "") // Disable unselectable entries
+                }
+            }
+
         }
     }
     func removeDirectionID(direction: String) -> String {
@@ -93,5 +78,14 @@ struct SortDirections: View {
             text.remove(at: direction.startIndex)
         }
         return text
+    }
+    private func getForegroundColor(for key: String) -> Color {
+        if directionDictionary[key] == "" {
+            return .primary // Case 1: Selected (true)
+        } else if directionDictionary[key] == selectedCook {
+            return .blue // Case 2: Current selected cook
+        } else {
+            return .gray // Case 3: Default
+        }
     }
 }

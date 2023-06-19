@@ -46,6 +46,7 @@ struct AddCooksDialog: View {
                         cooks.append(text + id)
                         newEntry = ""
                     }
+                    .disabled(newEntry == "")
                     .padding()
                 }
                 
