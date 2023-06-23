@@ -13,6 +13,9 @@ struct ContentView: View {
     @State var activeView : ActiveView = .search
     @State var activeRecipe : Recipe = Recipe()
     @State var cooks: [String] = []
+    @State var dividedDirections = [String:[String]]()
+
+
 
     var body: some View {
         ZStack {
@@ -39,16 +42,20 @@ struct ContentView: View {
             }  else if activeView == .addCooks{
                 AddCooksDialog(activeView: $activeView, cooks: $cooks)
             } else if activeView == .sort_directions{
-
-                SortDirections(activeView: $activeView, activeRecipe: $activeRecipe, cooks: $cooks)
-
+                SortDirections(activeView: $activeView, activeRecipe: $activeRecipe, cooks: $cooks, dividedDirections: $dividedDirections)
+            } else if activeView == .send_view{
+                SendView(dividedDirections: $dividedDirections)
+            } else if activeView == .accept_view{
+                AcceptView(dividedDirections: $dividedDirections, activeView: $activeView)
+            } else if activeView == .cooking{
+                Cooking(dividedDirections: $dividedDirections, activeView: $activeView)
             }
         }
     }
 }
 
 enum ActiveView {
-    case search, details, qr, sort_directions, addCooks
+    case search, details, qr, sort_directions, addCooks, send_view, accept_view, cooking
 
 }
 

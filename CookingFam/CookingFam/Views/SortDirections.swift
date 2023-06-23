@@ -10,8 +10,9 @@ struct SortDirections: View {
     @Binding var activeView: ActiveView
     @Binding var activeRecipe: Recipe
     @Binding var cooks: [String]
+    @Binding var dividedDirections : [String:[String]]
 
-    @State var dividedDirections = [String:[String]]()
+//    @State var dividedDirections = [String:[String]]()
     @State private var selectedCook: String = ""
     @State private var selection: UUID?
     @State var directionDictionary : [String:String] = [:]
@@ -19,7 +20,7 @@ struct SortDirections: View {
 
     
     var body: some View {
-        var directions: [Direction] = activeRecipe.directionArray
+        let directions: [Direction] = activeRecipe.directionArray
 
         VStack(spacing: 16) {
             
@@ -73,7 +74,13 @@ struct SortDirections: View {
                     .disabled(directionDictionary[key] != selectedCook && directionDictionary[key] != "") // Disable unselectable entries
                 }
             }
-
+            HStack{
+                Text("Send to others")
+                    .padding(10)
+            }.onTapGesture {
+//                activeView = .cooking
+                activeView = .send_view
+            }
         }
     }
     func removeDirectionID(direction: String) -> String {

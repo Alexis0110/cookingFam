@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 import CoreData
-
+import MultipeerConnectivity
 
 struct RecipeSearch: View {
     @Environment(\.managedObjectContext) var moc
@@ -17,14 +17,18 @@ struct RecipeSearch: View {
     @Binding var activeView: ActiveView
     @Binding var activeRecipe: Recipe
     
+//    @StateObject private var multipeerManager = MultipeerManager()
+    @State private var dataToSend = "Hello, World!"
+
+    
     var body: some View {
         ZStack {
             BackgroundColor()
             VStack{
-//                Button("Reload"){
-//                    let dataController = DataController()
-//                    dataController.importCSV()
-//                }
+                //                Button("Reload"){
+                //                    let dataController = DataController()
+                //                    dataController.importCSV()
+                //                }
                 
                 List {
                     // Cards:
@@ -35,32 +39,13 @@ struct RecipeSearch: View {
                 }
             }
             VStack {
+                Button("Connect", action:  {activeView = .accept_view} )
                 Spacer()
-                HStack {
-                    
-                    // QR-Scan:
-                    Spacer()
-                    HStack{
-                        Image(systemName: "qrcode")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 40, height: 40)
-                            .padding(10)
-                        Text("Scan QU-Code")
-                            .padding(10)
-                    }
-                    .background(Color(hex: 0xffd3b6))
-                    .onTapGesture {
-                        activeView = .qr
-                    }
-                    .cornerRadius(10)
-                    .padding()
-                    .shadow(color: Color.black.opacity(0.3),
-                            radius: 3,
-                            x: 3,
-                            y: 3)
-                }
+ 
             }
+
+            
         }
     }
+
 }
