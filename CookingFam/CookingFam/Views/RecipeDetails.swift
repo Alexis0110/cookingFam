@@ -13,6 +13,7 @@ struct RecipeDetails: View {
     @FetchRequest(sortDescriptors: []) var recipes: FetchedResults<Recipe>
     @Binding var activeView: ActiveView
     @Binding var activeRecipe: Recipe
+    @Binding var dividedDirections : [String:[String]]
     
     
     var body: some View {
@@ -63,7 +64,12 @@ struct RecipeDetails: View {
                     Text("Cook alone")
                         .padding(10)
                 }.onTapGesture {
-                    activeView = .sort_directions
+                    var directionStrings : [String] = []
+                    for direction in activeRecipe.directionArray{
+                        directionStrings.append(direction.wrappedText)
+                    }
+                    dividedDirections["Cooking"] = directionStrings
+                    activeView = .cooking
                 }
             }
             .padding()

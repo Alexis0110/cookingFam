@@ -11,12 +11,11 @@ struct SortDirections: View {
     @Binding var activeRecipe: Recipe
     @Binding var cooks: [String]
     @Binding var dividedDirections : [String:[String]]
-
-//    @State var dividedDirections = [String:[String]]()
+    
     @State private var selectedCook: String = ""
     @State private var selection: UUID?
     @State var directionDictionary : [String:String] = [:]
-    
+    @StateObject var vm = RecipesViewModel()
 
     
     var body: some View {
@@ -53,9 +52,6 @@ struct SortDirections: View {
             List {
                 ForEach(Array(directionDictionary.keys), id: \.self) { key in
                     Button(action: {
-                        // Perform action when button is tapped
-                        // For example, toggle the value of the selected entry
-                        
                         var cook_directions : [String] = dividedDirections[selectedCook] ?? []
                         if !cook_directions.contains(key){
                             cook_directions.append(key)
@@ -68,29 +64,23 @@ struct SortDirections: View {
                         dividedDirections[selectedCook] = cook_directions.sorted()
                         
                     }) {
-                        Text(removeDirectionID(direction:key))
+                        Text(vm.removeDirectionID(direction:key))
                             .foregroundColor(getForegroundColor(for: key)) // Make unselectable entries gray
                     }
                     .disabled(directionDictionary[key] != selectedCook && directionDictionary[key] != "") // Disable unselectable entries
                 }
             }
             HStack{
-                Text("Send to others")
-                    .padding(10)
-            }.onTapGesture {
-//                activeView = .cooking
-                activeView = .send_view
+                Button("Send to others"){
+                    activeView = .send_view
+                }
+                .padding(10)
+                .disabled(directionDictionary.values.contains(""))
             }
         }
     }
-    func removeDirectionID(direction: String) -> String {
-        let ind :Int = direction.distance(from: direction.startIndex, to: direction.firstIndex(of: ":") ?? direction.startIndex)
-        var text = direction
-        for _ in 0...ind {
-            text.remove(at: direction.startIndex)
-        }
-        return text
-    }
+
+    
     private func getForegroundColor(for key: String) -> Color {
         if directionDictionary[key] == "" {
             return .primary // Case 1: Selected (true)

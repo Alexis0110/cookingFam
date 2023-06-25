@@ -11,6 +11,7 @@ import os
 
 struct SendView: View {
     @Binding var dividedDirections : [String:[String]]
+    @Binding var activeView: ActiveView
     
     @StateObject var session: MultipeerManager = MultipeerManager(username: "Manager")
     var logger = Logger()
@@ -22,6 +23,10 @@ struct SendView: View {
                     Button(peer.displayName) {
                         session.serviceBrowser.invitePeer(peer, to: session.session, withContext: nil, timeout: 30)
                     }
+                }
+                Button("Start Cooking") {
+                    print(dividedDirections)
+                    activeView = .cooking
                 }
                 Button("Send directions") {
                     session.send(dividedDirections: dividedDirections)

@@ -14,17 +14,14 @@ struct AcceptView: View {
     @Binding var activeView: ActiveView
     
     @StateObject var session: MultipeerManager = MultipeerManager(username: "Receiver")
-    var logger = Logger()
         
     var body: some View {
             HStack {
                 Text("Waiting for your awesome cooking directions")
                 Button("Start Cooking") {
-                    print(dividedDirections)
                     dividedDirections = session.receivedData
-                    
                     activeView = .cooking
-                }.disabled(!(session.paired && dividedDirections == [:]))
+                }.disabled(!session.paired || session.receivedData.isEmpty)
                                         
             }
             .alert("Received an invite from \(session.recvdInviteFrom?.displayName ?? "ERR")!", isPresented: $session.recvdInvite) {

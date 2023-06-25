@@ -16,7 +16,14 @@ class RecipesViewModel: ObservableObject{
     @Environment(\.managedObjectContext) var moc
     private var dataController = DataController()
     
-
+    func removeDirectionID(direction: String) -> String {
+        let ind :Int = direction.distance(from: direction.startIndex, to: direction.firstIndex(of: ":") ?? direction.startIndex)
+        var text = direction
+        for _ in 0...ind {
+            text.remove(at: direction.startIndex)
+        }
+        return text
+    }
   
 }
 

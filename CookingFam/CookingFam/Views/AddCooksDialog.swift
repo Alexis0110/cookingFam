@@ -46,6 +46,7 @@ struct AddCooksDialog: View {
                         }
                         cooks.append(text + id)
                         newEntry = ""
+                        hideKeyboard()
                     }
                     .disabled(newEntry == "")
                     .padding()
@@ -73,6 +74,11 @@ struct AddCooksDialog: View {
             }
         }
     }
+    
+    
+    private func hideKeyboard() {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        }
     
     private func deleteEntry(at offsets: IndexSet) {
         cooks.remove(atOffsets: offsets)

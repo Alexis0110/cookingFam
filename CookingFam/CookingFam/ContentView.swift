@@ -22,7 +22,6 @@ struct ContentView: View {
             BackgroundColor()
             if activeView == .search {
                 TabView {
-                    
                     RecipeSearch(activeView: $activeView, activeRecipe: $activeRecipe)
                         .tabItem {
                             Image(systemName: "magnifyingglass")
@@ -35,27 +34,27 @@ struct ContentView: View {
                         }
                 }
                 .edgesIgnoringSafeArea(.all)
-            } else if activeView == .qr{
-                QrScanner(activeView: $activeView)
             } else if activeView == .details{
-                RecipeDetails(activeView: $activeView, activeRecipe: $activeRecipe)
-            }  else if activeView == .addCooks{
+                RecipeDetails(activeView: $activeView, activeRecipe: $activeRecipe, dividedDirections: $dividedDirections)
+            } else if activeView == .addCooks{
                 AddCooksDialog(activeView: $activeView, cooks: $cooks)
             } else if activeView == .sort_directions{
                 SortDirections(activeView: $activeView, activeRecipe: $activeRecipe, cooks: $cooks, dividedDirections: $dividedDirections)
             } else if activeView == .send_view{
-                SendView(dividedDirections: $dividedDirections)
+                SendView(dividedDirections: $dividedDirections,activeView: $activeView)
             } else if activeView == .accept_view{
                 AcceptView(dividedDirections: $dividedDirections, activeView: $activeView)
             } else if activeView == .cooking{
                 Cooking(dividedDirections: $dividedDirections, activeView: $activeView)
+            } else if activeView == .doneCooking{
+                DoneCooking(activeView: $activeView)
             }
         }
     }
 }
 
 enum ActiveView {
-    case search, details, qr, sort_directions, addCooks, send_view, accept_view, cooking
+    case search, details, sort_directions, addCooks, send_view, accept_view, cooking, doneCooking
 
 }
 
@@ -67,32 +66,14 @@ extension String {
     mutating func capitalizeFirstLetter() {
       self = self.capitalizingFirstLetter()
     }
-}
-
-extension UIViewController {
-// TODO: add this somehow in every view where a Textfield could add a keyboard
-//    this code should dismiss keyboard every time you click outside of the keyboard
-//    Now in every UIViewController, all you have to do is call this function:
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        self.hideKeyboardWhenTappedAround()
-//    }
-    
-    func hideKeyboardWhenTappedAround() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+    func containsSubstringRegex(_ substring: String) -> Bool {
+        do {
+            let pattern = try NSRegularExpression(pattern: substring, options: .caseInsensitive)
+            let range = NSRange(location: 0, length: self.utf16.count)
+            return pattern.firstMatch(in: self, options: [], range: range) != nil
+        } catch {
+            print("Regex error: \(error.localizedDescription)")
+        }
+        return false
     }
 }

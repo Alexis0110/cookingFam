@@ -13,6 +13,8 @@ struct Cooking: View {
     @Binding var dividedDirections : [String:[String]]
     @Binding var activeView: ActiveView
     @State var selectedCook = ""
+    @State var directionsDone : [String:Bool] = [:]
+    @StateObject var vm = RecipesViewModel()
     
     var body: some View {
         ZStack{
@@ -20,42 +22,54 @@ struct Cooking: View {
             VStack(spacing: 16) {
                 
                 HStack {
-                    BackButton(activeView: $activeView, prevView: .addCooks)
+                    BackButton(activeView: $activeView, prevView: .search)
                         .padding(.leading, 16)
                     Spacer()
                 }
                 HStack {
                     ForEach(Array(dividedDirections.keys), id: \.self){key in
                         Button(action: {
-
                             selectedCook = key
                         }) {
-                            Text(key)
-                                .padding()
-                                .foregroundColor(selectedCook == key ? .white : .blue)
-                                .background(selectedCook == key ? Color.blue : Color.clear)
-                                .cornerRadius(10)
+                            HStack{
+                                Text(key)
+                                    .padding()
+                                    .foregroundColor(selectedCook == key ? .white : .blue)
+                                    .background(selectedCook == key ? Color.blue : Color.clear)
+                                    .cornerRadius(10)
+                            }
                         }
                     }
                 }
                 .padding()
                 VStack{
-                    var directions : [String] = dividedDirections[selectedCook] ?? []
-                            ForEach(directions, id: \.self){direction in
-                                Button(action: {
-                                    // Perform action when button is tapped
-                                    // For example, toggle the value of the selected entry
-                                    
-                                }) {
-                                    Text(direction)
-                                        .foregroundColor(Color.primary) // Make unselectable entries gray
-                                }
-                            }
+                    let directions : [String] = dividedDirections[selectedCook] ?? []
+                    
+                    ForEach(directions, id: \.self) { direction in
+                        HStack{
+                            Image(systemName: directionsDone[direction] ?? false ? "checkmark.circle.fill" : "circle" )
+                            Text(vm.removeDirectionID(direction:direction))
+                                .foregroundColor(Color.primary)
+                        }.onTapGesture {
+                            directionsDone[direction] = true
                         }
-                        
                     }
-                }.onAppear(){
-                    selectedCook = Array(dividedDirections.keys)[0]
+
+                    Text("Finish Cooking")
+                        .foregroundColor(Color(hex: 0xff8b94))
+                    .onTapGesture {
+                        activeView = .doneCooking
+                    }
+                }
+            }.onAppear(){
+                selectedCook = Array(dividedDirections.keys)[0]
+                for cook in dividedDirections.values {
+                    for direction in cook {
+                        directionsDone[direction] = false
+                    }
                 }
             }
+            
         }
+    }
+}

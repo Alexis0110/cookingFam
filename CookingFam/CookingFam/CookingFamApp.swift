@@ -17,6 +17,10 @@ struct CookingFamApp: App {
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, dataController.container.viewContext)
+                .onAppear(){
+                    dataController.deleteAll()
+                    dataController.importCSV()
+                }
         }
     }
 }
