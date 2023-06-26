@@ -36,23 +36,26 @@ struct RecipeDetails: View {
                     Text(activeRecipe.wrappedName)
                         .font(.title)
                         .fontWeight(.bold)
+                        .foregroundColor(Color("Text"))
                     
                     ForEach(activeRecipe.ingredientArray, id: \.self) { ingredient in
                         Text(ingredient.wrappedName)
                             .font(.body)
+                            .foregroundColor(Color("Text"))
                     }
                 }
                 .padding()
-                .background(Color.white)
+                .background(Color("Background"))
                 .cornerRadius(10)
                 .shadow(color: .gray, radius: 2, x: 0, y: 2)
                 HStack{
                     Text("Cook with others")
                         .padding(10)
+                        .foregroundColor(Color("Text"))
                 }.onTapGesture {
                     activeView = .addCooks
                 }
-                .background(Color(hex: 0xffd3b6))
+                .background(Color("Color3"))
                 .cornerRadius(10)
                 .padding()
                 .shadow(color: Color.black.opacity(0.3),
@@ -60,17 +63,24 @@ struct RecipeDetails: View {
                         x: 3,
                         y: 3)
                 HStack{
-//                    Image(systemName: "Plus")
                     Text("Cook alone")
                         .padding(10)
+                        .foregroundColor(Color("Text"))
                 }.onTapGesture {
-                    var directionStrings : [String] = []
-                    for direction in activeRecipe.directionArray{
+                    var directionStrings: [String] = []
+                    for direction in activeRecipe.directionArray {
                         directionStrings.append(direction.wrappedText)
                     }
                     dividedDirections["Cooking"] = directionStrings
                     activeView = .cooking
                 }
+                .background(Color("Color3"))
+                .cornerRadius(10)
+                .padding()
+                .shadow(color: Color.black.opacity(0.3),
+                        radius: 3,
+                        x: 3,
+                        y: 3)
             }
             .padding()
                 

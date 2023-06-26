@@ -23,11 +23,10 @@ struct RecipeSearch: View {
         ZStack {
             BackgroundColor()
             VStack{
+            HStack{
                 TextField("Search", text: $newSearch)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-                // TODO: make search icon!!
-                Button("search") {
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                Button(action:  {
                     var temp: [Recipe] = []
                     for recipe in recipes {
                         if newSearch == ""{
@@ -54,22 +53,47 @@ struct RecipeSearch: View {
                     }
                     shownRecipes = temp
                     hideKeyboard()
-                }
-                .padding()
-                List {
-                    // Cards:
-                    ForEach(shownRecipes.sorted(by: { $0.wrappedName < $1.wrappedName }), id: \.self){recipe in
-                        RecipeCard(text: recipe.wrappedName, components: recipe.componentArray, selectedRecipe: recipe ,activeView: $activeView, activeRecipe: $activeRecipe)
-                    }
-                    .edgesIgnoringSafeArea(.all)
+                }){
+                    Image(systemName: "magnifyingglass")
                 }
             }
-            VStack{
+            .padding()
+                if shownRecipes.isEmpty{
+                    Text("No Recipes with these serchparameters")
                     
-            }
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                } else{
+                Group{
+                    List {
+                        // Cards:
+                        ForEach(shownRecipes.sorted(by: { $0.wrappedName < $1.wrappedName }), id: \.self){recipe in
+                            RecipeCard(text: recipe.wrappedName, components: recipe.componentArray, selectedRecipe: recipe ,activeView: $activeView, activeRecipe: $activeRecipe)
+                        }.listRowBackground(Color.clear)
+                    }
+                    .listStyle(PlainListStyle())
+                    .background(Color.clear)
+                }.background(Color.clear)}
+                    
+            }.background(Color.clear)
             VStack {
-                Button("Connect", action:  {activeView = .accept_view} )
                 Spacer()
+                HStack {
+                    Spacer()
+                    HStack{
+                        Text("Cook with others")
+                            .padding(10)
+                            .foregroundColor(Color("Text"))
+                    }.onTapGesture {
+                        activeView = .accept_view
+                    }
+                    .background(Color("Color3"))
+                    .cornerRadius(10)
+                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 16, trailing: 16))
+                    .shadow(color: Color.black.opacity(0.3),
+                            radius: 3,
+                            x: 3,
+                            y: 3)
+                }
             }
         }.onAppear(){
             for a in recipes {

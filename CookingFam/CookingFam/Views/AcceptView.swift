@@ -17,6 +17,12 @@ struct AcceptView: View {
         
     var body: some View {
             HStack {
+                HStack {
+                    BackButton(activeView: $activeView, prevView: .search)
+                        .padding(.leading, 16)
+                    
+                    Spacer()
+                }
                 Text("Waiting for your awesome cooking directions")
                 Button("Start Cooking") {
                     dividedDirections = session.receivedData

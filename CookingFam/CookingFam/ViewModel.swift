@@ -24,7 +24,7 @@ class RecipesViewModel: ObservableObject{
         }
         return text
     }
-  
+    
 }
 
 extension ContentView {

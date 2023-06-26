@@ -28,7 +28,7 @@ struct RecipeCard: View {
             VStack{
                 Text(text)
                     .font(.body)
-                    .foregroundColor(.black)
+                    .foregroundColor(Color("Text"))
                     .frame(maxWidth: .infinity, alignment: .leading)
                 Spacer()
                     .frame(height: 10)
@@ -56,8 +56,9 @@ struct RecipeCard: View {
                 }
                 Spacer()
             }
-            .padding()
-            .background(Color.white)
+            
+        }.padding()
+            .background(Color("Background"))
             .cornerRadius(10)
             .shadow(color: .gray, radius: 2, x: 0, y: 2)
             .padding(.horizontal)
@@ -66,13 +67,8 @@ struct RecipeCard: View {
                 activeRecipe = selectedRecipe
                 activeView = .details
             }
-        }
+            
     }
-    
-    func nothing(){
-        
-    }
-    
 }
 
 

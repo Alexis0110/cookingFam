@@ -11,6 +11,7 @@ import SwiftUI
 struct BackButton: View {
     @Binding var activeView: ActiveView
     let prevView: ActiveView
+    
     var body: some View {
         VStack{
             Image(systemName: "chevron.left")

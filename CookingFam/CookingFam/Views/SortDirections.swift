@@ -77,6 +77,8 @@ struct SortDirections: View {
                 .padding(10)
                 .disabled(directionDictionary.values.contains(""))
             }
+        }.onAppear(){
+            dividedDirections = [:]
         }
     }
 

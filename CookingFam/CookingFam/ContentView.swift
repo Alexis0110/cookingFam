@@ -33,6 +33,7 @@ struct ContentView: View {
                             Text("Cookbook")
                         }
                 }
+                .accentColor(Color(hex: 0xff8b94))
                 .edgesIgnoringSafeArea(.all)
             } else if activeView == .details{
                 RecipeDetails(activeView: $activeView, activeRecipe: $activeRecipe, dividedDirections: $dividedDirections)

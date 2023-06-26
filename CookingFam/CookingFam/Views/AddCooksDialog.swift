@@ -22,7 +22,7 @@ struct AddCooksDialog: View {
                 HStack {
                     BackButton(activeView: $activeView, prevView: .details)
                         .padding(.leading, 16)
-                    
+                        
                     Spacer()
                 }
 
@@ -72,6 +72,8 @@ struct AddCooksDialog: View {
 
                 .padding()
             }
+        }.onAppear(){
+            cooks = []
         }
     }
     

@@ -51,7 +51,7 @@ struct Cooking: View {
                             Text(vm.removeDirectionID(direction:direction))
                                 .foregroundColor(Color.primary)
                         }.onTapGesture {
-                            directionsDone[direction] = true
+                            directionsDone[direction]?.toggle()
                         }
                     }
 

@@ -18,6 +18,12 @@ struct SendView: View {
         
     var body: some View {
             VStack {
+                HStack {
+                    BackButton(activeView: $activeView, prevView: .search)
+                        .padding(.leading, 16)
+                    
+                    Spacer()
+                }
                 List(session.availablePeers, id: \.self) { peer in
                     // TODO: add info if connected to this user
                     Button(peer.displayName) {
