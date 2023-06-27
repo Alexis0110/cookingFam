@@ -16,31 +16,37 @@ struct AcceptView: View {
     @StateObject var session: MultipeerManager = MultipeerManager(username: "Receiver")
         
     var body: some View {
-            HStack {
-                HStack {
-                    BackButton(activeView: $activeView, prevView: .search)
-                        .padding(.leading, 16)
+            ZStack{
+                BackButton(activeView: $activeView, prevView: .search)
+                VStack {
+                    Headline(text: "Recieve Directions")
+                    Text("Waiting for the host to connect and send directions")
                     
-                    Spacer()
+                    Button("Start Cooking"){
+                        dividedDirections = session.receivedData
+                        activeView = .cooking
+                    }
+                    .foregroundColor(Color("Text"))
+                    .font(.headline)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(!session.paired || session.receivedData.isEmpty ? Color("Grayed") : Color("Color3"))
+                    .cornerRadius(10)
+                    .disabled(!session.paired || session.receivedData.isEmpty)
                 }
-                Text("Waiting for your awesome cooking directions")
-                Button("Start Cooking") {
-                    dividedDirections = session.receivedData
-                    activeView = .cooking
-                }.disabled(!session.paired || session.receivedData.isEmpty)
-                                        
-            }
-            .alert("Received an invite from \(session.recvdInviteFrom?.displayName ?? "ERR")!", isPresented: $session.recvdInvite) {
-                Button("Accept cooking invite") {
-                    if (session.invitationHandler != nil) {
-                        session.invitationHandler!(true, session.session)
+                .alert("Received an invite from \(session.recvdInviteFrom?.displayName ?? "ERR")!", isPresented: $session.recvdInvite) {
+                    Button("Accept cooking invite") {
+                        if (session.invitationHandler != nil) {
+                            session.invitationHandler!(true, session.session)
+                        }
+                    }
+                    Button("Reject cooking invite") {
+                        if (session.invitationHandler != nil) {
+                            session.invitationHandler!(false, nil)
+                        }
                     }
                 }
-                Button("Reject cooking invite") {
-                    if (session.invitationHandler != nil) {
-                        session.invitationHandler!(false, nil)
-                    }
-                }
+                .padding()
             }
         }
     }

@@ -16,29 +16,18 @@ struct AddCooksDialog: View {
 
     var body: some View {
         ZStack {
-            BackgroundColor()
-            
+            BackButton(activeView: $activeView, prevView: .details)
             VStack {
-                HStack {
-                    BackButton(activeView: $activeView, prevView: .details)
-                        .padding(.leading, 16)
-                        
-                    Spacer()
-                }
-
-                Text("Add all awesome chefs")
-                    .font(.title)
-                    .padding()
+                Headline(text: "Add all awesome chefs")
                 HStack{
                     // adds randomness to default entry for inputfield
                     let awesome_words = ["Awesome","impressive","superior","topnotch","finest","unrivaled","unsurpassable",""]
                     let cook_words = ["cook","chef","knife-swinger","deep-fryer","food-creator","vegetable-smasher"]
                     TextField((awesome_words.randomElement() ?? "awesome") + " " + (cook_words.randomElement() ?? "chef"), text: $newEntry)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .accentColor(Color("Color5"))
                     .padding()
-                    // TODO: add "enter pressed" to add chefs as well
                     Button("Add") {
-                        // adds uniqueness with id
                         var id = ""
                         let text = newEntry.capitalizingFirstLetter()
                         if cooks.contains(text){
@@ -49,28 +38,40 @@ struct AddCooksDialog: View {
                         hideKeyboard()
                     }
                     .disabled(newEntry == "")
+                    .foregroundColor(Color("Color5"))
                     .padding()
 
                 }
-                
-                List {
-                    ForEach(cooks, id: \.self) { entry in
-                        Text(entry)
+                if cooks.isEmpty{
+                    Spacer()
+                } else {
+                    List {
+                        ForEach(cooks, id: \.self) { entry in
+                            Text(entry)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(EdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15))
+                                .background(Color("Background"))
+                                .cornerRadius(10)
+                        }
+                        .onDelete(perform: deleteEntry)
+                        .listRowBackground(Color.clear)
+                            .listRowSeparator(.hidden)
+                            .padding(EdgeInsets(top: -8, leading: 0, bottom: -8, trailing: 0))
                     }
-                    .onDelete(perform: deleteEntry)
+                     .listStyle(PlainListStyle())
                 }
-
-                .listRowBackground(Color.clear)
-                
-
-                .padding()
-                Button("Continue") {
-                    activeView  = .sort_directions
+                   
+                if cooks.count != 0{
+                    Button(action: {activeView  = .sort_directions}) {
+                        ButtonText(text: "Continue")
+                    }
+                    .padding()
+                } else {
+                    Button(action: {}) {
+                        ButtonTextDisabled(text: "Add some chefs first!")
+                    }
+                    .padding()
                 }
-
-                .disabled(cooks.count == 0)
-
-                .padding()
             }
         }.onAppear(){
             cooks = []

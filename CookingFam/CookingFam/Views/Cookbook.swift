@@ -13,7 +13,6 @@ struct Cookbook: View {
     var body: some View {
         ZStack{
             BackgroundColor()
-            
             VStack{
                 Text("BOOK")
             }

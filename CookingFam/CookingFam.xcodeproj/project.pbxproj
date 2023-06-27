@@ -14,6 +14,9 @@
 		5E50573B2A1E8CA40097339F /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E50573A2A1E8CA40097339F /* ViewModel.swift */; };
 		5E5057412A1E961E0097339F /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5E50573F2A1E961E0097339F /* Model.xcdatamodeld */; };
 		5E5057442A1E97C20097339F /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5057432A1E97C20097339F /* DataController.swift */; };
+		5E5FB1632A4A4C7400F4AF22 /* Headline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5FB1622A4A4C7400F4AF22 /* Headline.swift */; };
+		5E5FB1652A4A4DDB00F4AF22 /* ButtonText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5FB1642A4A4DDB00F4AF22 /* ButtonText.swift */; };
+		5E5FB1672A4A555400F4AF22 /* SortDirectionsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5FB1662A4A555400F4AF22 /* SortDirectionsCard.swift */; };
 		5E6246072A31F5D10058C759 /* BackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6246062A31F5D10058C759 /* BackgroundColor.swift */; };
 		5E6246092A321D670058C759 /* RecipeDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6246082A321D670058C759 /* RecipeDetails.swift */; };
 		5ED4DFF12A1E8B4000DDC5D1 /* CookingFamApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4DFF02A1E8B4000DDC5D1 /* CookingFamApp.swift */; };
@@ -66,6 +69,9 @@
 		5E50573A2A1E8CA40097339F /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		5E5057402A1E961E0097339F /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		5E5057432A1E97C20097339F /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		5E5FB1622A4A4C7400F4AF22 /* Headline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Headline.swift; sourceTree = "<group>"; };
+		5E5FB1642A4A4DDB00F4AF22 /* ButtonText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonText.swift; sourceTree = "<group>"; };
+		5E5FB1662A4A555400F4AF22 /* SortDirectionsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortDirectionsCard.swift; sourceTree = "<group>"; };
 		5E6246062A31F5D10058C759 /* BackgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundColor.swift; sourceTree = "<group>"; };
 		5E6246082A321D670058C759 /* RecipeDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetails.swift; sourceTree = "<group>"; };
 		5E936AF72A420DEC0043879B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -208,6 +214,9 @@
 				3B5278DA2A3379F2008CD8F3 /* BackButton.swift */,
 				5ED9343D2A30FF8800EE96CA /* RecipeCard.swift */,
 				5E6246062A31F5D10058C759 /* BackgroundColor.swift */,
+				5E5FB1622A4A4C7400F4AF22 /* Headline.swift */,
+				5E5FB1642A4A4DDB00F4AF22 /* ButtonText.swift */,
+				5E5FB1662A4A555400F4AF22 /* SortDirectionsCard.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -382,6 +391,7 @@
 				5E5057442A1E97C20097339F /* DataController.swift in Sources */,
 				5EEFB38A2A2F9E8E0000643B /* Cooking.swift in Sources */,
 				5ED4DFF32A1E8B4000DDC5D1 /* ContentView.swift in Sources */,
+				5E5FB1672A4A555400F4AF22 /* SortDirectionsCard.swift in Sources */,
 				5EEFB3882A2F9E730000643B /* RecipeSearch.swift in Sources */,
 				5ED7541A2A448C2C00C15EAB /* MultipeerManager.swift in Sources */,
 				5EFA887C2A2FB0B900C02F67 /* Recipe+CoreDataClass.swift in Sources */,
@@ -389,6 +399,7 @@
 				5EFA88792A2FB0B900C02F67 /* Direction+CoreDataProperties.swift in Sources */,
 				5ED9343E2A30FF8800EE96CA /* RecipeCard.swift in Sources */,
 				5EFEA5392A44F18D00849E22 /* AcceptView.swift in Sources */,
+				5E5FB1632A4A4C7400F4AF22 /* Headline.swift in Sources */,
 				5E4883792A48E34100B45BFC /* DoneCooking.swift in Sources */,
 				5EFA88782A2FB0B900C02F67 /* Direction+CoreDataClass.swift in Sources */,
 				5EFA887A2A2FB0B900C02F67 /* Ingredient+CoreDataClass.swift in Sources */,
@@ -398,6 +409,7 @@
 				3B8FA6592A33B86A001A7843 /* SortDirections.swift in Sources */,
 				5ED4DFF12A1E8B4000DDC5D1 /* CookingFamApp.swift in Sources */,
 				5EEFB38C2A2F9EA10000643B /* Cookbook.swift in Sources */,
+				5E5FB1652A4A4DDB00F4AF22 /* ButtonText.swift in Sources */,
 				5EFA887D2A2FB0B900C02F67 /* Recipe+CoreDataProperties.swift in Sources */,
 				5EFA887F2A2FB0B900C02F67 /* Component+CoreDataProperties.swift in Sources */,
 				5E5057412A1E961E0097339F /* Model.xcdatamodeld in Sources */,

@@ -15,24 +15,18 @@ struct RecipeDetails: View {
     @Binding var activeRecipe: Recipe
     @Binding var dividedDirections : [String:[String]]
     
-    
     var body: some View {
         ZStack {
-            BackgroundColor()
+            
+            
+            BackButton(activeView: $activeView, prevView: .search)
             
             VStack(spacing: 16) {
-                HStack {
-                    BackButton(activeView: $activeView, prevView: .search)
-                        .padding(.leading, 16)
-                    
-                    Spacer()
-                }
-                
                 Image(systemName: "takeoutbag.and.cup.and.straw")
                     .font(.system(size: 100))
                     .foregroundColor(Color(hex: 0xffaaa5))
                 
-                VStack(spacing: 8) {
+                VStack(alignment: .leading, spacing: 8) {
                     Text(activeRecipe.wrappedName)
                         .font(.title)
                         .fontWeight(.bold)
@@ -47,55 +41,29 @@ struct RecipeDetails: View {
                 .padding()
                 .background(Color("Background"))
                 .cornerRadius(10)
-                .shadow(color: .gray, radius: 2, x: 0, y: 2)
-                HStack{
-                    Text("Cook with others")
-                        .padding(10)
-                        .foregroundColor(Color("Text"))
-                }.onTapGesture {
+                .shadow(color: Color.gray.opacity(0.3), radius: 2, x: 0, y: 2)
+                
+                Button(action: {
                     activeView = .addCooks
+                }) {
+                    ButtonText(text: "Cook with others")
+                        
                 }
-                .background(Color("Color3"))
-                .cornerRadius(10)
-                .padding()
-                .shadow(color: Color.black.opacity(0.3),
-                        radius: 3,
-                        x: 3,
-                        y: 3)
-                HStack{
-                    Text("Cook alone")
-                        .padding(10)
-                        .foregroundColor(Color("Text"))
-                }.onTapGesture {
+                .padding(.horizontal)
+                
+                Button(action: {
                     var directionStrings: [String] = []
                     for direction in activeRecipe.directionArray {
                         directionStrings.append(direction.wrappedText)
                     }
                     dividedDirections["Cooking"] = directionStrings
                     activeView = .cooking
+                }) {
+                    ButtonText(text: "Cook alone")
                 }
-                .background(Color("Color3"))
-                .cornerRadius(10)
-                .padding()
-                .shadow(color: Color.black.opacity(0.3),
-                        radius: 3,
-                        x: 3,
-                        y: 3)
+                .padding(.horizontal)
             }
             .padding()
-                
         }
-    }
-    
-    //TODO: remove falls nich mehr nötig
-    private var backButton: some View {
-        Button(action: {
-            // Handle the "Go Back" action here
-            activeView = .search
-        }) {
-            Image(systemName: "chevron.left")
-                .font(.title2)
-        }
-        .foregroundColor(Color(hex: 0xff8b94))
     }
 }

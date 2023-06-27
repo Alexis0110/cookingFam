@@ -26,6 +26,7 @@ struct RecipeSearch: View {
             HStack{
                 TextField("Search", text: $newSearch)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .accentColor(Color("Color5"))
                 Button(action:  {
                     var temp: [Recipe] = []
                     for recipe in recipes {
@@ -63,18 +64,16 @@ struct RecipeSearch: View {
                     
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else{
-                Group{
                     List {
                         // Cards:
                         ForEach(shownRecipes.sorted(by: { $0.wrappedName < $1.wrappedName }), id: \.self){recipe in
                             RecipeCard(text: recipe.wrappedName, components: recipe.componentArray, selectedRecipe: recipe ,activeView: $activeView, activeRecipe: $activeRecipe)
                         }.listRowBackground(Color.clear)
+                            .listRowSeparator(.hidden)
                     }
                     .listStyle(PlainListStyle())
-                    .background(Color.clear)
-                }.background(Color.clear)}
-                    
-            }.background(Color.clear)
+                    }
+            }
             VStack {
                 Spacer()
                 HStack {

@@ -16,7 +16,9 @@ struct BackButton: View {
         VStack{
             Image(systemName: "chevron.left")
                 .font(.title2)
-        }.foregroundColor(Color(hex: 0xff8b94))
+        }.foregroundColor(Color("Color5"))
+            .position(x: 10)
+        .padding(EdgeInsets(top: 35, leading: 15, bottom: 0, trailing: 0))
         .onTapGesture {
             activeView = prevView
         }
