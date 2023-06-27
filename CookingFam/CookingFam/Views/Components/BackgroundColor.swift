@@ -14,10 +14,12 @@ struct BackgroundColor : View{
             // Background color
             LinearGradient(gradient: Gradient(colors: [Color(hex:0xa8e6cf), Color(hex:0xffd3b6)]), startPoint: .top, endPoint: .bottom)
                 .opacity(0.5)
+                .edgesIgnoringSafeArea(.all)
             
             // Blur effect
             LinearGradient(gradient: Gradient(colors: [.clear, .blue]), startPoint: .top, endPoint: .bottom)
                 .blur(radius: 500)
+                .edgesIgnoringSafeArea(.all)
         }
     }
 }
