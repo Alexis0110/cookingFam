@@ -17,10 +17,9 @@ struct RecipeDetails: View {
     
     var body: some View {
         ZStack {
-            
-            
             BackButton(activeView: $activeView, prevView: .search)
             
+            //dislay the clicked recipe
             VStack(spacing: 16) {
                 Image(systemName: "takeoutbag.and.cup.and.straw")
                     .font(.system(size: 100))
@@ -46,10 +45,9 @@ struct RecipeDetails: View {
                 Button(action: {
                     activeView = .addCooks
                 }) {
-                    ButtonText(text: "Cook with others")
+                    ButtonText(text: "Cook with others", disabled: false)
                         
                 }
-                .padding(.horizontal)
                 
                 Button(action: {
                     var directionStrings: [String] = []
@@ -59,9 +57,8 @@ struct RecipeDetails: View {
                     dividedDirections["Cooking"] = directionStrings
                     activeView = .cooking
                 }) {
-                    ButtonText(text: "Cook alone")
+                    ButtonText(text: "Cook alone", disabled: false)
                 }
-                .padding(.horizontal)
             }
             .padding()
         }

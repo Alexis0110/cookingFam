@@ -10,14 +10,29 @@ import SwiftUI
 
 
 struct DoneCooking: View {
+    @Environment(\.managedObjectContext) var moc
+    
     @Binding var activeView: ActiveView
+    @Binding var activeRecipe: Recipe
     
     var body: some View {
         ZStack{
-            Text("Back to search")
-                .onTapGesture {
-                    activeView = .search
+            VStack{
+                Headline(text: "Bon appétit")
+                Text("Would you like to add \(activeRecipe.wrappedName) to your cookbook?")
+                Button(action: {
+                    activeRecipe.cookbook = Cookbook(context: moc)
+                    activeRecipe.cookbook?.name = "book"
+                    
+                    try? moc.save()
+                }) {
+                    ButtonText(text: "Add to cookbook", disabled: false)
                 }
+                ButtonText(text: "Back to search", disabled: false)
+                    .onTapGesture {
+                        activeView = .search
+                    }
+            }.padding()
         }
     }
     

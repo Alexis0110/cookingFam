@@ -10,28 +10,15 @@ import SwiftUI
 
 struct ButtonText: View {
     let text: String
-    
+    let disabled: Bool
     var body: some View {
         Text(text)
             .foregroundColor(Color("Text"))
             .font(.headline)
             .padding()
             .frame(maxWidth: .infinity)
-            .background( Color("Color3"))
+            .background(disabled ? Color("Grayed") : Color("Color3"))
             .cornerRadius(10)
     }
 }
 
-struct ButtonTextDisabled: View {
-    let text: String
-    
-    var body: some View {
-        Text(text)
-            .foregroundColor(Color("Text"))
-            .font(.headline)
-            .padding()
-            .frame(maxWidth: .infinity)
-            .background(Color("Grayed"))
-            .cornerRadius(10)
-    }
-}

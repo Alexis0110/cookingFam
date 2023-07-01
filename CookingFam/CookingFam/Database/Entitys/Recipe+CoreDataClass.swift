@@ -2,8 +2,7 @@
 //  Recipe+CoreDataClass.swift
 //  CookingFam
 //
-//  Created by Alexis on 06.06.23.
-//
+//  Created by Alexis on 01.07.23.
 //
 
 import Foundation

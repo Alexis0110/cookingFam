@@ -24,8 +24,8 @@ struct SendView: View {
                         Text("Searching for devices to connect...")
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                     } else{
+                        //displays all available iphones in the area
                         List(session.availablePeers, id: \.self) { peer in
-                            // TODO: add info if connected to this user
                             Button(action:{
                                 session.serviceBrowser.invitePeer(peer, to: session.session, withContext: nil, timeout: 30)
                             }) {
@@ -42,25 +42,15 @@ struct SendView: View {
                         
                         .listStyle(PlainListStyle())
                     }
-                    Button("Start Cooking"){
-                        activeView = .cooking
+                    Button(action:{activeView = .cooking}){
+                        ButtonText(text: "Start Cooking", disabled: false)
                     }
-                    .foregroundColor(Color("Text"))
-                    .font(.headline)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color("Color3"))
-                    .cornerRadius(10)
                     
-                    Button("Send directions"){
+                    Button(action: {
                         session.send(dividedDirections: dividedDirections)
+                    }) {
+                        ButtonText(text: !session.paired ? "Waiting for connection" : "Send directions", disabled: !session.paired)
                     }
-                    .foregroundColor(Color("Text"))
-                    .font(.headline)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(!session.paired ? Color("Grayed") : Color("Color3"))
-                    .cornerRadius(10)
                     .disabled(!session.paired)
                 }.padding()
             }

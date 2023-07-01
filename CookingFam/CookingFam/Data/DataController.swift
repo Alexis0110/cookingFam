@@ -119,4 +119,17 @@ class DataController : ObservableObject{
         _ = try? container.viewContext.execute(batchDeleteRequest4)
     }
     
+    func hasNoValues() -> Bool {
+        let fetchRecipes: NSFetchRequest<NSFetchRequestResult> = Recipe.fetchRequest()
+        do{
+            let results = try container.viewContext.fetch(fetchRecipes)
+            if results.isEmpty{
+                return true
+            }
+            
+        }catch{
+            
+        }
+        return false
+    }
 }

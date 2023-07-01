@@ -45,34 +45,18 @@ struct AddCooksDialog: View {
                 if cooks.isEmpty{
                     Spacer()
                 } else {
-                    List {
-                        ForEach(cooks, id: \.self) { entry in
-                            Text(entry)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(EdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15))
-                                .background(Color("Background"))
-                                .cornerRadius(10)
-                        }
-                        .onDelete(perform: deleteEntry)
-                        .listRowBackground(Color.clear)
-                            .listRowSeparator(.hidden)
-                            .padding(EdgeInsets(top: -8, leading: 0, bottom: -8, trailing: 0))
-                    }
-                     .listStyle(PlainListStyle())
+                    //displays added cooks
+                    ListElement(iterable: $cooks, deleteable: true)
                 }
-                   
-                if cooks.count != 0{
-                    Button(action: {activeView  = .sort_directions}) {
-                        ButtonText(text: "Continue")
-                    }
-                    .padding()
-                } else {
-                    Button(action: {}) {
-                        ButtonTextDisabled(text: "Add some chefs first!")
-                    }
-                    .padding()
+                
+                Button(action: {
+                        activeView = .sort_directions
+                }) {
+                    ButtonText(text: cooks.count == 0 ? "Add some cooks first" : "Continue", disabled: cooks.count == 0)
                 }
+                .disabled(cooks.count == 0)
             }
+            .padding()
         }.onAppear(){
             cooks = []
         }
@@ -83,9 +67,7 @@ struct AddCooksDialog: View {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
     
-    private func deleteEntry(at offsets: IndexSet) {
-        cooks.remove(atOffsets: offsets)
-    }
+    
     private func returnUniqueID(entry: String, id: Int) -> Int{
         if cooks.contains(entry + String(id)){
             return returnUniqueID(entry: entry, id: id+1)

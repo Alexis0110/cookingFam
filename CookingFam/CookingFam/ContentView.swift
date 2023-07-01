@@ -15,8 +15,6 @@ struct ContentView: View {
     @State var cooks: [String] = []
     @State var dividedDirections = [String:[String]]()
 
-
-
     var body: some View {
         ZStack {
             BackgroundColor()
@@ -27,7 +25,7 @@ struct ContentView: View {
                             Image(systemName: "magnifyingglass")
                             Text("Recipes")
                         }
-                    Cookbook()
+                    Book(activeView: $activeView, activeRecipe: $activeRecipe)
                         .tabItem {
                             Image(systemName: "book")
                             Text("Cookbook")
@@ -48,7 +46,7 @@ struct ContentView: View {
             } else if activeView == .cooking{
                 Cooking(dividedDirections: $dividedDirections, activeView: $activeView)
             } else if activeView == .doneCooking{
-                DoneCooking(activeView: $activeView)
+                DoneCooking(activeView: $activeView, activeRecipe: $activeRecipe)
             }
         }
     }

@@ -16,11 +16,15 @@ struct CookingFamApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-            
                 .environment(\.managedObjectContext, dataController.container.viewContext)
                 .onAppear(){
-                    dataController.deleteAll()
-                    dataController.importCSV()
+                    //only reload the data if the database is empty
+                    if dataController.hasNoValues(){
+                        print("YESSSSSSSSSSSSSS")
+                        dataController.deleteAll()
+                        dataController.importCSV()
+                    }
+                        
                 }
         }
     }

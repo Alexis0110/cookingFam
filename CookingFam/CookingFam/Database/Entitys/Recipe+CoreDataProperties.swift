@@ -2,7 +2,7 @@
 //  Recipe+CoreDataProperties.swift
 //  CookingFam
 //
-//  Created by Alexis on 06.06.23.
+//  Created by Alexis on 01.07.23.
 //
 //
 
@@ -18,9 +18,10 @@ extension Recipe {
 
     @NSManaged public var id: UUID?
     @NSManaged public var name: String?
-    @NSManaged public var ingredient: NSSet?
-    @NSManaged public var direction: NSSet?
     @NSManaged public var component: NSSet?
+    @NSManaged public var cookbook: Cookbook?
+    @NSManaged public var direction: NSSet?
+    @NSManaged public var ingredient: NSSet?
     
     public var wrappedId: UUID{
         id!
@@ -53,20 +54,20 @@ extension Recipe {
 
 }
 
-// MARK: Generated accessors for ingredient
+// MARK: Generated accessors for component
 extension Recipe {
 
-    @objc(addIngredientObject:)
-    @NSManaged public func addToIngredient(_ value: Ingredient)
+    @objc(addComponentObject:)
+    @NSManaged public func addToComponent(_ value: Component)
 
-    @objc(removeIngredientObject:)
-    @NSManaged public func removeFromIngredient(_ value: Ingredient)
+    @objc(removeComponentObject:)
+    @NSManaged public func removeFromComponent(_ value: Component)
 
-    @objc(addIngredient:)
-    @NSManaged public func addToIngredient(_ values: NSSet)
+    @objc(addComponent:)
+    @NSManaged public func addToComponent(_ values: NSSet)
 
-    @objc(removeIngredient:)
-    @NSManaged public func removeFromIngredient(_ values: NSSet)
+    @objc(removeComponent:)
+    @NSManaged public func removeFromComponent(_ values: NSSet)
 
 }
 
@@ -87,20 +88,20 @@ extension Recipe {
 
 }
 
-// MARK: Generated accessors for component
+// MARK: Generated accessors for ingredient
 extension Recipe {
 
-    @objc(addComponentObject:)
-    @NSManaged public func addToComponent(_ value: Component)
+    @objc(addIngredientObject:)
+    @NSManaged public func addToIngredient(_ value: Ingredient)
 
-    @objc(removeComponentObject:)
-    @NSManaged public func removeFromComponent(_ value: Component)
+    @objc(removeIngredientObject:)
+    @NSManaged public func removeFromIngredient(_ value: Ingredient)
 
-    @objc(addComponent:)
-    @NSManaged public func addToComponent(_ values: NSSet)
+    @objc(addIngredient:)
+    @NSManaged public func addToIngredient(_ values: NSSet)
 
-    @objc(removeComponent:)
-    @NSManaged public func removeFromComponent(_ values: NSSet)
+    @objc(removeIngredient:)
+    @NSManaged public func removeFromIngredient(_ values: NSSet)
 
 }
 

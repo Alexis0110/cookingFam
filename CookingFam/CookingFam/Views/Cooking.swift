@@ -23,25 +23,14 @@ struct Cooking: View {
                 Headline(text: "Cooking")
                 HStack(spacing: 8) {
                     if dividedDirections.keys.count > 1{
-                        ForEach(Array(dividedDirections.keys), id: \.self){key in
-                            Button(action: {
-                                selectedCook = key
-                            }) {
-                                Text(key)
-                                    .foregroundColor(Color("Text"))
-                                    .font(.headline)
-                                    .padding(.vertical, 10)
-                                    .padding(.horizontal, 20)
-                                    .background(selectedCook == key ? Color("Color3") : Color("Grayed"))
-                                    .cornerRadius(10)
-                            }
-                        }
+                        CooksTabBar(cooks: Array(dividedDirections.keys), selectedCook: $selectedCook)
                     }
                 }
                 .padding()
-                VStack{
-                    let directions : [String] = dividedDirections[selectedCook] ?? []
-                    
+                
+                let directions : [String] = dividedDirections[selectedCook] ?? []
+                //displays the direcions of the selected cook in CooksTabBar
+                List{
                     ForEach(directions, id: \.self) { direction in
                         HStack{
                             Image(systemName: directionsDone[direction] ?? false ? "checkmark.circle.fill" : "circle" )
@@ -55,20 +44,19 @@ struct Cooking: View {
                             .cornerRadius(10)
                             .onTapGesture {
                             directionsDone[direction]?.toggle()
-                        }
-                    }
-                }
+                            }
+                            
+                    }.listRowBackground(Color.clear)
+                        .listRowSeparator(.hidden)
+                        .padding(EdgeInsets(top: -8, leading: 0, bottom: -8, trailing: 0))
+                }.listStyle(PlainListStyle())
                 
                 
-                Text("Back to search")
+                ButtonText(text: "Finish cooking", disabled: false)
                     .onTapGesture {
-                        activeView = .search
-                    }.foregroundColor(Color("Text"))
-                            .font(.headline)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color("Color3"))
-                            .cornerRadius(10)
+                        dividedDirections = [:]
+                        activeView = .doneCooking
+                    }
             }.padding()
             }.onAppear(){
                 selectedCook = Array(dividedDirections.keys)[0]

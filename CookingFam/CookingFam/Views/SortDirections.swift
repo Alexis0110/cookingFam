@@ -25,22 +25,8 @@ struct SortDirections: View {
             VStack() {
                 Headline(text: "Divide steps among cooks")
                 
-                HStack(spacing: 8) {
-                    ForEach(cooks, id: \.self) { cook in
-                        Button(action: {
-                            selectedCook = cook
-                        }) {
-                            Text(cook)
-                                .foregroundColor(Color("Text"))
-                                .font(.headline)
-                                .padding(.vertical, 10)
-                                .padding(.horizontal, 20)
-                                .background(selectedCook == cook ? Color("Color3") : Color("Grayed"))
-                                .cornerRadius(10)
-                        }
-                    }
-                }
-                
+                CooksTabBar(cooks: cooks, selectedCook: $selectedCook)
+                //displays all cooking directions. On click add them to the corresponding cook
                 List {
                     ForEach(Array(directionDictionary.keys), id: \.self) { key in
                         Button(action: {
@@ -70,15 +56,11 @@ struct SortDirections: View {
                         .listRowSeparator(.hidden)
                         .padding(EdgeInsets(top: -8, leading: 0, bottom: -8, trailing: 0))
                 }.listStyle(PlainListStyle())
-                Button("Send to others"){
-                    activeView = .send_view
+                Button(action: {
+                        activeView = .send_view
+                }) {
+                    ButtonText(text: directionDictionary.values.contains("") ? "Divide all steps first" : "Send to others", disabled: directionDictionary.values.contains(""))
                 }
-                .foregroundColor(Color("Text"))
-                .font(.headline)
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(directionDictionary.values.contains("") ? Color("Grayed") : Color("Color3"))
-                .cornerRadius(10)
                 .disabled(directionDictionary.values.contains(""))
 
             }

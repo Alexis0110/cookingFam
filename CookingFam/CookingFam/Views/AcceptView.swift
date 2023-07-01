@@ -22,16 +22,12 @@ struct AcceptView: View {
                     Headline(text: "Recieve Directions")
                     Text("Waiting for the host to connect and send directions")
                     
-                    Button("Start Cooking"){
+                    Button(action: {
                         dividedDirections = session.receivedData
                         activeView = .cooking
+                    }) {
+                        ButtonText(text: !session.paired || session.receivedData.isEmpty ? "Waiting for directions" : "Start Cooking", disabled: !session.paired || session.receivedData.isEmpty)
                     }
-                    .foregroundColor(Color("Text"))
-                    .font(.headline)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(!session.paired || session.receivedData.isEmpty ? Color("Grayed") : Color("Color3"))
-                    .cornerRadius(10)
                     .disabled(!session.paired || session.receivedData.isEmpty)
                 }
                 .alert("Received an invite from \(session.recvdInviteFrom?.displayName ?? "ERR")!", isPresented: $session.recvdInvite) {

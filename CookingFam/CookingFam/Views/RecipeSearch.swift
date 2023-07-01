@@ -12,7 +12,8 @@ import MultipeerConnectivity
 
 struct RecipeSearch: View {
     @Environment(\.managedObjectContext) var moc
-    @FetchRequest(sortDescriptors: []) var recipes: FetchedResults<Recipe>
+    @FetchRequest(sortDescriptors: [], predicate: nil)
+    var recipes: FetchedResults<Recipe>
     
     @Binding var activeView: ActiveView
     @Binding var activeRecipe: Recipe
@@ -27,6 +28,7 @@ struct RecipeSearch: View {
                 TextField("Search", text: $newSearch)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .accentColor(Color("Color5"))
+                //filter recipes according to the parameters entered in the TextField
                 Button(action:  {
                     var temp: [Recipe] = []
                     for recipe in recipes {
@@ -61,11 +63,10 @@ struct RecipeSearch: View {
             .padding()
                 if shownRecipes.isEmpty{
                     Text("No Recipes with these serchparameters")
-                    
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else{
+                    //displays ll recipes with matching searchparameters
                     List {
-                        // Cards:
                         ForEach(shownRecipes.sorted(by: { $0.wrappedName < $1.wrappedName }), id: \.self){recipe in
                             RecipeCard(text: recipe.wrappedName, components: recipe.componentArray, selectedRecipe: recipe ,activeView: $activeView, activeRecipe: $activeRecipe)
                         }.listRowBackground(Color.clear)
