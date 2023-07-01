@@ -132,4 +132,17 @@ class DataController : ObservableObject{
         }
         return false
     }
+    func hasNoBook() -> Bool {
+        let fetchRecipes: NSFetchRequest<NSFetchRequestResult> = Cookbook.fetchRequest()
+        do{
+            let results = try container.viewContext.fetch(fetchRecipes)
+            if results.isEmpty{
+                return true
+            }
+            
+        }catch{
+            
+        }
+        return false
+    }
 }

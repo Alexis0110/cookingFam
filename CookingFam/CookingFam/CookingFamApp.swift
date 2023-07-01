@@ -20,9 +20,15 @@ struct CookingFamApp: App {
                 .onAppear(){
                     //only reload the data if the database is empty
                     if dataController.hasNoValues(){
-                        print("YESSSSSSSSSSSSSS")
                         dataController.deleteAll()
                         dataController.importCSV()
+                    }
+                    //check if the cookbook already exist. if not create it
+                    if dataController.hasNoBook(){
+                        let book = Cookbook(context: dataController.container.viewContext)
+                        book.name = "Book"
+
+                        try? dataController.container.viewContext.save()
                     }
                         
                 }

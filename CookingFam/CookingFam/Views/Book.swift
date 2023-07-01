@@ -38,6 +38,7 @@ struct Book: View {
                     }
             }
         }
+
     }
     func delete(at offsets: IndexSet){
         for offset in offsets{

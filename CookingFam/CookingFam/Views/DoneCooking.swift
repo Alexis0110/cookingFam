@@ -22,7 +22,7 @@ struct DoneCooking: View {
                 Text("Would you like to add \(activeRecipe.wrappedName) to your cookbook?")
                 Button(action: {
                     activeRecipe.cookbook = Cookbook(context: moc)
-                    activeRecipe.cookbook?.name = "book"
+                    activeRecipe.cookbook?.name = "Book"
                     
                     try? moc.save()
                 }) {

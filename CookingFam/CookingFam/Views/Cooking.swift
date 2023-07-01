@@ -18,7 +18,6 @@ struct Cooking: View {
     
     var body: some View {
         ZStack{
-            BackButton(activeView: $activeView, prevView: .search)
             VStack() {
                 Headline(text: "Cooking")
                 HStack(spacing: 8) {
