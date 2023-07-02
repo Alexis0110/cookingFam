@@ -12,6 +12,7 @@ struct AddCooksDialog: View {
     @Binding var activeView: ActiveView
     @Binding var cooks: [String]
     @State private var newEntry = ""
+    @StateObject var vm = RecipesViewModel()
     
 
     var body: some View {
@@ -31,7 +32,7 @@ struct AddCooksDialog: View {
                         var id = ""
                         let text = newEntry.capitalizingFirstLetter()
                         if cooks.contains(text){
-                            id = String(returnUniqueID(entry: text, id: 1))
+                            id = String(vm.returnUniqueID(cooks: cooks,entry: text, id: 1))
                         }
                         cooks.append(text + id)
                         newEntry = ""
@@ -68,12 +69,7 @@ struct AddCooksDialog: View {
         }
     
     
-    private func returnUniqueID(entry: String, id: Int) -> Int{
-        if cooks.contains(entry + String(id)){
-            return returnUniqueID(entry: entry, id: id+1)
-        }
-        return id
-    }
-
+   
+    
 }
 

@@ -84,6 +84,7 @@ struct RecipeSearch: View {
                             .padding(10)
                             .foregroundColor(Color("Text"))
                     }.onTapGesture {
+                        activeRecipe = shownRecipes[0]
                         activeView = .accept_view
                     }
                     .background(Color("Color3"))

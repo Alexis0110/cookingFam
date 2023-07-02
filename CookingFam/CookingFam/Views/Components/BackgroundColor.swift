@@ -12,7 +12,7 @@ struct BackgroundColor : View{
     var body : some View{
         ZStack{
             // Background color
-            LinearGradient(gradient: Gradient(colors: [Color(hex:0xa8e6cf), Color(hex:0xffd3b6)]), startPoint: .top, endPoint: .bottom)
+            LinearGradient(gradient: Gradient(colors: [Color("BackBlue"), Color("BackOrange")]), startPoint: .top, endPoint: .bottom)
                 .opacity(0.5)
                 .edgesIgnoringSafeArea(.all)
             

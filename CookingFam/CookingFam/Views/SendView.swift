@@ -42,16 +42,15 @@ struct SendView: View {
                         
                         .listStyle(PlainListStyle())
                     }
-                    Button(action:{activeView = .cooking}){
-                        ButtonText(text: "Start Cooking", disabled: false)
-                    }
-                    
                     Button(action: {
                         session.send(dividedDirections: dividedDirections)
                     }) {
                         ButtonText(text: !session.paired ? "Waiting for connection" : "Send directions", disabled: !session.paired)
                     }
                     .disabled(!session.paired)
+                    Button(action:{activeView = .cooking}){
+                        ButtonText(text: "Start Cooking", disabled: false)
+                    }
                 }.padding()
             }
         }

@@ -31,7 +31,7 @@ struct ContentView: View {
                             Text("Cookbook")
                         }
                 }
-                .accentColor(Color(hex: 0xff8b94))
+                .accentColor(Color("Color5"))
                 .edgesIgnoringSafeArea(.all)
             } else if activeView == .details{
                 RecipeDetails(activeView: $activeView, activeRecipe: $activeRecipe, dividedDirections: $dividedDirections)
@@ -42,7 +42,7 @@ struct ContentView: View {
             } else if activeView == .send_view{
                 SendView(dividedDirections: $dividedDirections,activeView: $activeView)
             } else if activeView == .accept_view{
-                AcceptView(dividedDirections: $dividedDirections, activeView: $activeView)
+                AcceptView(dividedDirections: $dividedDirections, activeView: $activeView, activeRecipe: $activeRecipe)
             } else if activeView == .cooking{
                 Cooking(dividedDirections: $dividedDirections, activeView: $activeView)
             } else if activeView == .doneCooking{

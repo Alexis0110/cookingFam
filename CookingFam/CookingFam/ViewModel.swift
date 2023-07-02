@@ -25,20 +25,17 @@ class RecipesViewModel: ObservableObject{
         return text
     }
     
+    func returnUniqueID(cooks: [String],entry: String, id: Int) -> Int{
+        if cooks.contains(entry + String(id)){
+            return returnUniqueID(cooks: cooks,entry: entry, id: id+1)
+        }
+        return id
+    }
+    
 }
 
 extension ContentView {
     @MainActor class ViewModel:ObservableObject{
     }
 }
-extension Color {
-    init(hex: UInt, alpha: Double = 1) {
-        self.init(
-            .sRGB,
-            red: Double((hex >> 16) & 0xff) / 255,
-            green: Double((hex >> 08) & 0xff) / 255,
-            blue: Double((hex >> 00) & 0xff) / 255,
-            opacity: alpha
-        )
-    }
-}
+

@@ -133,7 +133,6 @@ extension MultipeerManager: MCSessionDelegate {
            let decodedData = try JSONDecoder().decode([String: [String]].self, from: data)
            DispatchQueue.main.async {
                self.receivedData = decodedData
-               print("YES RECEIVED")
                print(self.myPeerID)
                print(self.receivedData)
            }

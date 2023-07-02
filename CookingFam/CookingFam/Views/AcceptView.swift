@@ -12,6 +12,7 @@ import os
 struct AcceptView: View {
     @Binding var dividedDirections : [String:[String]]
     @Binding var activeView: ActiveView
+    @Binding var activeRecipe: Recipe
     
     @StateObject var session: MultipeerManager = MultipeerManager(username: "Receiver")
         
@@ -43,6 +44,8 @@ struct AcceptView: View {
                     }
                 }
                 .padding()
+            }.onAppear(){
+                
             }
         }
     }

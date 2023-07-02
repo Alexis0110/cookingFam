@@ -21,7 +21,7 @@ struct RecipeCard: View {
         HStack {
             Image(systemName: "takeoutbag.and.cup.and.straw")
                 .font(.system(size: 24))
-                .foregroundColor(Color(hex: 0xffaaa5))
+                .foregroundColor(Color("Color5"))
             Spacer()
                 .frame(width: 20)
             VStack{
